@@ -35,6 +35,9 @@ public class Horus {
                     case "unmark":
                         tasklist.unmarkTask(command_task[1]);
                         break;
+                    case "delete":
+                        tasklist.delete(command_task[1]);
+                        break;
                     case "todo":
                         tasklist.addTask(command_task[1], TaskList.taskTypes.TODO);
                         break;
@@ -52,6 +55,7 @@ public class Horus {
                 switch (command_task[0]) {
                     case "mark":
                     case "unmark":
+                    case "delete":
                         System.out.println("Error: Must select task number to " + command_task[0] + "." );
                         break;
                     case "todo":

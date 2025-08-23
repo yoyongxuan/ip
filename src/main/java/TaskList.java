@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class TaskList {
-    Task[] tasks;
-    int num_of_tasks;
+//    Task[] tasks;
+    ArrayList<Task> tasks;
+//    int num_of_tasks;
 
     public enum taskTypes {
         TODO,
@@ -69,65 +72,67 @@ public class TaskList {
     }
 
     public TaskList() {
-        tasks = new Task[100];
-        num_of_tasks = 0;
+        tasks = new ArrayList<Task>();
     }
 
     public void addTask(String task_str, taskTypes task_type) throws InvalidInputException {
 //            print_line();
         switch(task_type) {
             case TODO:
-                tasks[num_of_tasks] = new ToDoTask(task_str);
+                tasks.add(new ToDoTask(task_str));
                 break;
             case DEADLINE:
                 if(!task_str.contains("/by")){
                     throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
                 }
-                tasks[num_of_tasks] = new DeadlineTask(task_str);
+                tasks.add(new DeadlineTask(task_str));
                 break;
             case EVENT:
                 if(!task_str.contains("/from") || !task_str.contains("/to")){
                     throw new InvalidInputException("Error: Event tasks must have a start and end (denoted with /from and /to).");
                 }
-                tasks[num_of_tasks] = new EventTask(task_str);
+                tasks.add(new EventTask(task_str));
                 break;
         }
         System.out.println("Got it. I've added this task:");
-        System.out.println("  " + tasks[num_of_tasks]);
-        num_of_tasks++;
-        System.out.println("Now you have " + num_of_tasks + " tasks in the list.");
-//            print_line();
+        System.out.println("  " + tasks.get(tasks.size()-1));
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
     public void showList() {
-//            print_line();
-        for(int i = 0; i < num_of_tasks; i++) {
-            System.out.println( i+1 + "." + tasks[i].toString() );
+        for(int i = 0; i < tasks.size(); i++) {
+            System.out.println( i+1 + "." + tasks.get(i).toString() );
         }
-//            print_line();
     }
 
     public void markTask(String taskID) throws InvalidInputException {
         int task_index = Integer.parseInt(taskID) - 1;
-        if(tasks[task_index] == null) {
+        if(task_index >= tasks.size()) {
             throw new InvalidInputException("Error: No task at index " + taskID + ". Please input a valid task number." );
         }
-        tasks[task_index].mark();
-//            print_line();
+        tasks.get(task_index).mark();
         System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + tasks[task_index]);
-//            print_line();
+        System.out.println("  " + tasks.get(task_index));
     }
 
     public void unmarkTask(String taskID) throws InvalidInputException  {
         int task_index = Integer.parseInt(taskID) - 1;
-        if(tasks[task_index] == null) {
+        if(task_index >= tasks.size()) {
             throw new InvalidInputException("Error: No task at index " + taskID + ". Please input a valid task number." );
         }
-        tasks[task_index].unmark();
-//            print_line();
+        tasks.get(task_index).unmark();
         System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + tasks[task_index]);
-//            print_line();
+        System.out.println("  " + tasks.get(task_index));
+    }
+
+    public void delete(String taskID) throws InvalidInputException  {
+        int task_index = Integer.parseInt(taskID) - 1;
+        if(task_index >= tasks.size()) {
+            throw new InvalidInputException("Error: No task at index " + taskID + ". Please input a valid task number." );
+        }
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + tasks.get(task_index));
+        tasks.remove(task_index);
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 }

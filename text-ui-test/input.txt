@@ -7,4 +7,12 @@ list
 deadline return book /by Sunday
 event project meeting /from Mon 2pm /to 4pm
 list
+mark
+mark 20
+todo
+deadline return book
+event /from now
+delete 100
+delete 2
+list
 bye
