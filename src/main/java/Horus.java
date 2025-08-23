@@ -32,8 +32,17 @@ public class Horus {
                 case "unmark":
                     tasklist.unmarkTask(command_task[1]);
                     break;
+                case "todo":
+                    tasklist.addTask(command_task[1], TaskList.taskTypes.TODO);
+                    break;
+                case "deadline":
+                    tasklist.addTask(command_task[1], TaskList.taskTypes.DEADLINE);
+                    break;
+                case "event":
+                    tasklist.addTask(command_task[1], TaskList.taskTypes.EVENT);
+                    break;
                 default:
-                    tasklist.addTask(input_str);
+                    System.out.println(input_str);
                     break;
             }
         }
@@ -60,6 +69,12 @@ public class Horus {
         Task[] tasks;
         int num_of_tasks;
 
+        public static enum taskTypes {
+            TODO,
+            DEADLINE,
+            EVENT
+        }
+
         public static class Task {
             String task_str;
             boolean marked;
@@ -73,9 +88,50 @@ public class Horus {
             public void unmark() {
                 marked = false;
             }
+            @Override
             public String toString() {
                 String mark_str = marked? "X" : " ";
                 return "[" + mark_str +"] " + this.task_str;
+            }
+        }
+
+        public static class ToDoTask extends Task {
+            public ToDoTask(String task_str) {
+                super(task_str);
+            }
+
+            @Override
+            public String toString() {
+                return "[T]" + super.toString();
+            }
+        }
+
+        public static class DeadlineTask extends Task {
+            String by;
+            public DeadlineTask(String task_str) {
+                super(task_str.substring(0,task_str.indexOf("/by")) );
+                by = task_str.substring(task_str.indexOf("/by") + 3);
+            }
+
+            @Override
+            public String toString() {
+                return "[D]" + super.toString() +" (by:" + this.by +")";
+            }
+        }
+
+        public static class EventTask extends Task {
+            String from;
+            String to;
+            public EventTask(String task_str) {
+                super(task_str.substring(0,task_str.indexOf("/from")) );
+                from = task_str.substring(task_str.indexOf("/from") + 5,task_str.indexOf("/to") );
+                to = task_str.substring(task_str.indexOf("/to") + 3 );
+
+            }
+
+            @Override
+            public String toString() {
+                return "[D]" + super.toString() +" (from:" + this.from + " to:"+ this.to +")";
             }
         }
 
@@ -84,11 +140,23 @@ public class Horus {
             num_of_tasks = 0;
         }
 
-        public void addTask(String task_str) {
+        public void addTask(String task_str, taskTypes task_type) {
             print_line();
-            tasks[num_of_tasks] = new Task(task_str);
+            switch(task_type) {
+                case TODO:
+                    tasks[num_of_tasks] = new ToDoTask(task_str);
+                    break;
+                case DEADLINE:
+                    tasks[num_of_tasks] = new DeadlineTask(task_str);
+                    break;
+                case EVENT:
+                    tasks[num_of_tasks] = new EventTask(task_str);
+                    break;
+            }
+            System.out.println("Got it. I've added this task:");
+            System.out.println(tasks[num_of_tasks]);
             num_of_tasks++;
-            System.out.println("added: " +task_str);
+            System.out.println("You now have " + num_of_tasks + " tasks in the list.");
             print_line();
         }
 
