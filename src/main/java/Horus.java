@@ -57,7 +57,7 @@ public class Horus {
 
     public static void exit() {
         print_line();
-        System.out.println("Bye. Hope to see you again soon!\n" );
+        System.out.println("Bye. Hope to see you again soon!" );
         print_line();
     }
 
@@ -69,7 +69,7 @@ public class Horus {
         Task[] tasks;
         int num_of_tasks;
 
-        public static enum taskTypes {
+        public enum taskTypes {
             TODO,
             DEADLINE,
             EVENT
@@ -154,9 +154,9 @@ public class Horus {
                     break;
             }
             System.out.println("Got it. I've added this task:");
-            System.out.println(tasks[num_of_tasks]);
+            System.out.println("  " + tasks[num_of_tasks]);
             num_of_tasks++;
-            System.out.println("You now have " + num_of_tasks + " tasks in the list.");
+            System.out.println("Now you have " + num_of_tasks + " tasks in the list.");
             print_line();
         }
 
@@ -173,7 +173,7 @@ public class Horus {
             tasks[task_index].mark();
             print_line();
             System.out.println("Nice! I've marked this task as done:");
-            System.out.println("   " + tasks[task_index]);
+            System.out.println("  " + tasks[task_index]);
             print_line();
         }
 
@@ -182,7 +182,7 @@ public class Horus {
             tasks[task_index].unmark();
             print_line();
             System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println("   " + tasks[task_index]);
+            System.out.println("  " + tasks[task_index]);
             print_line();
         }
     }
