@@ -9,8 +9,24 @@ public class Horus {
             + "|____/ \\__,_|_|\\_\\___|\n";
 
     public static void main(String[] args) {
+        TaskList tasklist = new TaskList();
+        String last_input;
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
+
+
         greet();
-        echo();
+
+        while (!exit) {
+            last_input = scanner.nextLine();
+            exit = last_input.equals("bye");
+            if (last_input.equals("list")) {
+                tasklist.showList();
+            } else if (!exit) {
+                tasklist.addTask(last_input);
+            }
+        }
+
         exit();
     }
 
@@ -25,7 +41,10 @@ public class Horus {
         print_line();
     }
 
-    public static void echo() {
+    public static void list() {
+
+        String[] tasks = new String[100];
+        int num_of_tasks = 0;
         boolean exit = false;
         String last_input;
         Scanner scanner = new Scanner(System.in);
@@ -34,18 +53,51 @@ public class Horus {
         while (!exit) {
             last_input = scanner.nextLine();
             exit = last_input.equals("bye");
-            if (!exit) {
+            if (last_input.equals("list")) {
                 print_line();
-                System.out.println(last_input);
+                for(int i = 0; i < num_of_tasks; i++) {
+                    System.out.println( Integer.toString(i+1) + ". " + tasks[i]);
+                }
+                print_line();
+            } else if (!exit) {
+                print_line();
+                tasks[num_of_tasks] = last_input;
+                num_of_tasks++;
+                System.out.println("added: " +last_input);
                 print_line();
             }
 
         }
     }
 
+
     public static void print_line() {
         System.out.println("____________________________________________________________" );
     }
 
+    public static class TaskList {
+        String[] tasks;
+        int num_of_tasks;
+        public TaskList() {
+            tasks = new String[100];
+            num_of_tasks = 0;
+        }
+
+        public void addTask(String task_str) {
+            print_line();
+            tasks[num_of_tasks] = task_str;
+            num_of_tasks++;
+            System.out.println("added: " +task_str);
+            print_line();
+        }
+
+        public void showList() {
+            print_line();
+            for(int i = 0; i < num_of_tasks; i++) {
+                System.out.println( Integer.toString(i+1) + ". " + tasks[i]);
+            }
+            print_line();
+        }
+    }
 
 }
