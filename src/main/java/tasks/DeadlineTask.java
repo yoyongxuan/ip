@@ -19,7 +19,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String getTaskData() {
-        return "D," + super.getTaskData() + "/by" + this.by ;
+        return "D," + super.getTaskData() + "/by " + this.by.getData() ;
     }
 
     @Override

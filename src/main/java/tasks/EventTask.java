@@ -23,7 +23,7 @@ public class EventTask extends Task {
 
     @Override
     public String getTaskData() {
-        return "E," + super.getTaskData() + "/from" + this.from + "/to" + this.to;
+        return "E," + super.getTaskData() + "/from " + this.from.getData() + " /to " + this.to.getData();
     }
 
     @Override
