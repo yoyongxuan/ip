@@ -4,7 +4,7 @@ package tasks;
  * An object representing a task with a deadline
  */
 public class DeadlineTask extends Task {
-    String by;
+    CustomDateTime by;
 
     /**
      * Creates a deadline task
@@ -12,9 +12,9 @@ public class DeadlineTask extends Task {
      * @param taskStr String representing the description of task to be created
      *                and a deadline denoted by /by
      */
-    public DeadlineTask(String taskStr) {
+    public DeadlineTask(String taskStr) throws InvalidInputException{
         super(taskStr.substring(0,taskStr.indexOf("/by")) );
-        by = taskStr.substring(taskStr.indexOf("/by") + 3);
+        by =  new CustomDateTime(taskStr.substring(taskStr.indexOf("/by") + 3));
     }
 
     @Override
@@ -24,6 +24,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() +" (by:" + this.by +")";
+        return "[D]" + super.toString() +" (by: " + this.by +")";
     }
 }

@@ -1,4 +1,6 @@
 list
+delete 6
+delete 5
 delete 4
 delete 3
 delete 2
@@ -20,5 +22,8 @@ deadline return book
 event /from now
 delete 100
 delete 2
+list
+deadline do homework /by 29/8/2025 1600 before the lecture
+event training /from 30/8/2025 after lunch /to 30/8/2025 1400
 list
 bye

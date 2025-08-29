@@ -7,11 +7,23 @@ ____________________________________________________________
 1.[T][X] read book
 2.[T][ ] borrow book
 3.[D][ ] return book  (by: Sunday)
-4.[E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+4.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
+5.[D][ ] do homework  (by: 4:00pm 29/8/2025 before the lecture)
+6.[E][ ] training  (from: 30/8/2025 after lunch to: 2:00pm 30/8/2025)
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
-  [E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+  [E][ ] training  (from: 30/8/2025 after lunch to: 2:00pm 30/8/2025)
+Now you have 5 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [D][ ] do homework  (by: 4:00pm 29/8/2025 before the lecture)
+Now you have 4 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [E][ ] project meeting  (from: Mon 2pm to: 4pm)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -68,7 +80,7 @@ Now you have 4 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-  [E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+  [E][ ] project meeting  (from: Mon 2pm to: 4pm)
 Now you have 5 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -76,7 +88,7 @@ ____________________________________________________________
 2.[T][ ] return book
 3.[T][ ] borrow book
 4.[D][ ] return book  (by: Sunday)
-5.[E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+5.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
 Error: Must select task number to mark.
@@ -105,7 +117,25 @@ ____________________________________________________________
 1.[T][X] read book
 2.[T][ ] borrow book
 3.[D][ ] return book  (by: Sunday)
-4.[E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+4.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [D][ ] do homework  (by: 29/8/2025 1600 before the lecture)
+Now you have 5 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Got it. I've added this task:
+  [E][ ] training  (from: 30/8/2025 after lunch to: 2:00pm 30/8/2025)
+Now you have 6 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+1.[T][X] read book
+2.[T][ ] borrow book
+3.[D][ ] return book  (by: Sunday)
+4.[E][ ] project meeting  (from: Mon 2pm to: 4pm)
+5.[D][ ] do homework  (by: 29/8/2025 1600 before the lecture)
+6.[E][ ] training  (from: 30/8/2025 after lunch to: 2:00pm 30/8/2025)
 ____________________________________________________________
 ____________________________________________________________
 Task list saved.
