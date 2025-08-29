@@ -1,6 +1,8 @@
 package tasks;
 
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * A list of tasks
@@ -8,16 +10,38 @@ import java.util.ArrayList;
 public class TaskList {
     ArrayList<Task> tasks;
 
-    //Represents the 3 different task classes
+    /**
+     * Represents the 3 different task classes
+     */
     public enum taskTypes {
         TODO,
         DEADLINE,
         EVENT
     }
 
-    //Initializes TaskList
+    /**
+     * Creates a list of tasks
+     */
     public TaskList() {
         tasks = new ArrayList<>();
+    }
+
+    /**
+     * Saves the content of the task list to a file such that it can be used to initialize another task list
+     *
+     * @param filepath String representing file path of the file task list is to be saved to
+     */
+    public void saveToFile(String filepath) {
+        try {
+            FileWriter taskWriter = new FileWriter(filepath);
+            for (int i = 0; i < tasks.size(); i++) {
+                taskWriter.write(tasks.get(i).getFileString() + "\n");
+            }
+            taskWriter.close();
+            System.out.println("Task list saved.");
+        } catch (IOException e) {
+            System.out.println("An error occurred, unable to save task list");
+        }
     }
 
     /**

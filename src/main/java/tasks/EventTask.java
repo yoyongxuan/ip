@@ -22,7 +22,12 @@ public class EventTask extends Task {
     }
 
     @Override
+    public String getFileString() {
+        return "E," + super.getFileString() + "/from" + this.from + "/to" + this.to;
+    }
+
+    @Override
     public String toString() {
-        return "[D]" + super.toString() +" (from:" + this.from + " to:"+ this.to +")";
+        return "[E]" + super.toString() +" (from:" + this.from + " to:"+ this.to +")";
     }
 }

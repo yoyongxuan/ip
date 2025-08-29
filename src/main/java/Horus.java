@@ -1,12 +1,31 @@
 import tasks.InvalidInputException;
 import tasks.TaskList;
+import java.io.File;
 
+import java.io.IOException;
 import java.util.Scanner;  // Import the Scanner class
 
 public class Horus {
     static String CHATBOT_NAME = "Horus";
 
     public static void main(String[] args) {
+
+        String saveFilePath = "data/taskdata.txt";
+
+        File dataDirectory = new File("data");
+        if (!dataDirectory.exists()) {
+            dataDirectory.mkdir();
+        }
+
+        File taskdataFile = new File(saveFilePath);
+        boolean newFile = true;
+        try {
+            newFile = taskdataFile.createNewFile();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+
+
         TaskList tasklist = new TaskList();
         String input_str;
         String[] command_task;
@@ -78,6 +97,7 @@ public class Horus {
         }
 
     }
+
     /**
      * Prints a line followed by a greeting message
      */
@@ -90,9 +110,7 @@ public class Horus {
      * Prints an exit message surrounded by lines
      */
     public static void exit() {
-//        print_line();
         System.out.println("Bye. Hope to see you again soon!" );
-//        print_line();
     }
 
     /**

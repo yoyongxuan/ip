@@ -17,6 +17,15 @@ public class Task {
         this.isMarked = false;
     }
 
+    /**
+     * Returns string to be saved to file
+     * @return String representing this task
+     */
+    public String getFileString() {
+        String markStr = this.isMarked? "T" : "F";
+        return markStr + "," + this.taskDesc;
+    }
+
     //Marks task as done
     public void mark() {
         isMarked = true;
@@ -30,7 +39,7 @@ public class Task {
 
     @Override
     public String toString() {
-        String mark_str = isMarked? "X" : " ";
-        return "[" + mark_str +"] " + this.taskDesc;
+        String markStr = isMarked? "X" : " ";
+        return "[" + markStr +"] " + this.taskDesc;
     }
 }

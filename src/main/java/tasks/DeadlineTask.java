@@ -18,6 +18,11 @@ public class DeadlineTask extends Task {
     }
 
     @Override
+    public String getFileString() {
+        return "D," + super.getFileString() + "/by" + this.by ;
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() +" (by:" + this.by +")";
     }
