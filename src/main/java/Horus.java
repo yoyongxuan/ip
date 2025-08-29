@@ -1,5 +1,7 @@
-import java.util.Scanner;  // Import the Scanner class
+import tasks.InvalidInputException;
+import tasks.TaskList;
 
+import java.util.Scanner;  // Import the Scanner class
 
 public class Horus {
     static String CHATBOT_NAME = "Horus";
@@ -23,34 +25,34 @@ public class Horus {
 
             try {
                 switch (command_task[0]) {
-                    case "bye":
-                        isExit = true;
-                        exit();
-                        break;
-                    case "list":
-                        tasklist.showList();
-                        break;
-                    case "mark":
-                        tasklist.markTask(command_task[1]);
-                        break;
-                    case "unmark":
-                        tasklist.unmarkTask(command_task[1]);
-                        break;
-                    case "delete":
-                        tasklist.delete(command_task[1]);
-                        break;
-                    case "todo":
-                        tasklist.addTask(command_task[1], TaskList.taskTypes.TODO);
-                        break;
-                    case "deadline":
-                        tasklist.addTask(command_task[1], TaskList.taskTypes.DEADLINE);
-                        break;
-                    case "event":
-                        tasklist.addTask(command_task[1], TaskList.taskTypes.EVENT);
-                        break;
-                    default:
-                        System.out.println("Error: '" + input_str + "' is not a valid command.");
-                        break;
+                case "bye":
+                    isExit = true;
+                    exit();
+                    break;
+                case "list":
+                    tasklist.showList();
+                    break;
+                case "mark":
+                    tasklist.markTask(command_task[1]);
+                    break;
+                case "unmark":
+                    tasklist.unmarkTask(command_task[1]);
+                    break;
+                case "delete":
+                    tasklist.delete(command_task[1]);
+                    break;
+                case "todo":
+                    tasklist.addTask(command_task[1], TaskList.taskTypes.TODO);
+                    break;
+                case "deadline":
+                    tasklist.addTask(command_task[1], TaskList.taskTypes.DEADLINE);
+                    break;
+                case "event":
+                    tasklist.addTask(command_task[1], TaskList.taskTypes.EVENT);
+                    break;
+                default:
+                    System.out.println("Error: '" + input_str + "' is not a valid command.");
+                    break;
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 switch (command_task[0]) {
