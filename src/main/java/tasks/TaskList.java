@@ -53,7 +53,11 @@ public class TaskList {
         Scanner taskReader = new Scanner(saveFile);
         while (taskReader.hasNextLine()) {
             String taskData = taskReader.nextLine();
-            tasks.add(Task.readTaskData(taskData));
+            try {
+                tasks.add(Task.readTaskData(taskData));
+            } catch (InvalidInputException e) {
+                System.out.println("Local file corrupted. " + taskData + " is not a valid task");
+            }
         }
         taskReader.close();
     }

@@ -26,24 +26,32 @@ public class Task {
         return markStr + "," + this.taskDesc;
     }
 
-    public static Task readTaskData(String taskData) {
+    public static Task readTaskData(String taskData) throws InvalidInputException {
         Task out;
         String[] taskDataArray = taskData.split(",", 3);
         String taskType = taskDataArray[0];
         String markedStr = taskDataArray[1];
-        String taskDesc = taskDataArray[2];
+        String taskStr = taskDataArray[2];
         switch (taskType) {
         case "T":
-            out = new ToDoTask(taskDesc);
+            out = new ToDoTask(taskStr);
             break;
         case "D":
-            out = new DeadlineTask(taskDesc);
+            if(!taskStr.contains("/by")){
+                throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
+            }
+            out = new DeadlineTask(taskStr);
             break;
         case "E":
-            out = new EventTask(taskDesc);
+            if(!taskStr.contains("/from") || !taskStr.contains("/to")){
+                throw new InvalidInputException(
+                        "Error: Event tasks must have a start and end (denoted with /from and /to).");
+            }
+            out = new EventTask(taskStr);
             break;
         default:
-            out = new Task(taskDesc);
+            throw new InvalidInputException(
+                    "Error: Invalid task type.");
         }
 
         if (markedStr.equals("T")) {

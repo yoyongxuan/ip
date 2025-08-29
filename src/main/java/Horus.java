@@ -20,11 +20,11 @@ public class Horus {
         try {
             boolean isNewFile = taskdataFile.createNewFile();
             if (!isNewFile) {
-                tasklist.readFromFile(taskdataFile);
                 System.out.println("Retrieving saved tasks from local file.");
+                tasklist.readFromFile(taskdataFile);
             }
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Error: Unable to access local files");
         }
 
 
