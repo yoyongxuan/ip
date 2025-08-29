@@ -1,29 +1,30 @@
 import java.util.Scanner;  // Import the Scanner class
 
+
 public class Horus {
-    static String chatbot_name = "Horus";
+    static String CHATBOT_NAME = "Horus";
 
     public static void main(String[] args) {
         TaskList tasklist = new TaskList();
         String input_str;
-        String[] command_task; //An array of 2 strings. First item is a command if present, second item is a string representing a task
+        String[] command_task;
+        //An array of 2 strings. First item is a command if present, second item is a string representing a task
         Scanner scanner = new Scanner(System.in);
-        boolean exit = false;
+        boolean isExit = false;
 
 
         greet();
 
-        while (!exit) {
+        while (!isExit) {
             input_str = scanner.nextLine();
             print_line();
-            command_task = input_str.split("\\s+",2); //Isolates the substring behind the first space in the input
-//            System.out.println(command_task[0]);
-//            System.out.println(command_task[1]);
+            command_task = input_str.split("\\s+",2);
+            //Isolates the substring behind the first space in the input
 
             try {
                 switch (command_task[0]) {
                     case "bye":
-                        exit = true;
+                        isExit = true;
                         exit();
                         break;
                     case "list":
@@ -65,7 +66,9 @@ public class Horus {
                         break;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error: " + command_task[1] + " is not an integer. Please input task number to " + command_task[0] );
+                System.out.println(
+                        "Error: " + command_task[1] + " is not an integer. Please input task number to "
+                                + command_task[0] );
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
@@ -73,18 +76,26 @@ public class Horus {
         }
 
     }
-
+    /**
+     * Prints a line followed by a greeting message
+     */
     public static void greet() {
         print_line();
-        System.out.println("Hello! I'm " + chatbot_name + "\nWhat can I do for you?\n" );
+        System.out.println("Hello! I'm " + CHATBOT_NAME + "\nWhat can I do for you?\n" );
     }
 
+    /**
+     * Prints an exit message surrounded by lines
+     */
     public static void exit() {
 //        print_line();
         System.out.println("Bye. Hope to see you again soon!" );
 //        print_line();
     }
 
+    /**
+     * Prints a line
+     */
     public static void print_line() {
         System.out.println("____________________________________________________________" );
     }

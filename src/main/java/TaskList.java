@@ -89,7 +89,8 @@ public class TaskList {
                 break;
             case EVENT:
                 if(!task_str.contains("/from") || !task_str.contains("/to")){
-                    throw new InvalidInputException("Error: Event tasks must have a start and end (denoted with /from and /to).");
+                    throw new InvalidInputException(
+                            "Error: Event tasks must have a start and end (denoted with /from and /to).");
                 }
                 tasks.add(new EventTask(task_str));
                 break;
@@ -108,7 +109,8 @@ public class TaskList {
     public void markTask(String taskID) throws InvalidInputException {
         int task_index = Integer.parseInt(taskID) - 1;
         if(task_index >= tasks.size()) {
-            throw new InvalidInputException("Error: No task at index " + taskID + ". Please input a valid task number." );
+            throw new InvalidInputException(
+                    "Error: No task at index " + taskID + ". Please input a valid task number." );
         }
         tasks.get(task_index).mark();
         System.out.println("Nice! I've marked this task as done:");
@@ -118,7 +120,8 @@ public class TaskList {
     public void unmarkTask(String taskID) throws InvalidInputException  {
         int task_index = Integer.parseInt(taskID) - 1;
         if(task_index >= tasks.size()) {
-            throw new InvalidInputException("Error: No task at index " + taskID + ". Please input a valid task number." );
+            throw new InvalidInputException(
+                    "Error: No task at index " + taskID + ". Please input a valid task number." );
         }
         tasks.get(task_index).unmark();
         System.out.println("OK, I've marked this task as not done yet:");
@@ -128,7 +131,8 @@ public class TaskList {
     public void delete(String taskID) throws InvalidInputException  {
         int task_index = Integer.parseInt(taskID) - 1;
         if(task_index >= tasks.size()) {
-            throw new InvalidInputException("Error: No task at index " + taskID + ". Please input a valid task number." );
+            throw new InvalidInputException(
+                    "Error: No task at index " + taskID + ". Please input a valid task number." );
         }
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + tasks.get(task_index));
