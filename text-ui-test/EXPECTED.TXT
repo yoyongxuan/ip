@@ -1,7 +1,34 @@
+Retrieving saved tasks from local file.
 ____________________________________________________________
 Hello! I'm Horus
 What can I do for you?
 
+____________________________________________________________
+1.[T][X] read book
+2.[T][ ] borrow book
+3.[D][ ] return book  (by: Sunday)
+4.[E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [E][ ] project meeting  (from: Mon 2pm  to: 4pm)
+Now you have 3 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [D][ ] return book  (by: Sunday)
+Now you have 2 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [T][ ] borrow book
+Now you have 1 tasks in the list.
+____________________________________________________________
+____________________________________________________________
+Noted. I've removed this task:
+  [T][X] read book
+Now you have 0 tasks in the list.
+____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
   [T][ ] read book
@@ -21,12 +48,16 @@ OK, I've marked this task as not done yet:
   [T][ ] return book
 ____________________________________________________________
 ____________________________________________________________
+Nice! I've marked this task as done:
+  [T][X] read book
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this task:
   [T][ ] borrow book
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-1.[T][ ] read book
+1.[T][X] read book
 2.[T][ ] return book
 3.[T][ ] borrow book
 ____________________________________________________________
@@ -41,7 +72,7 @@ Got it. I've added this task:
 Now you have 5 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-1.[T][ ] read book
+1.[T][X] read book
 2.[T][ ] return book
 3.[T][ ] borrow book
 4.[D][ ] return book  (by: Sunday)
@@ -71,11 +102,12 @@ Noted. I've removed this task:
 Now you have 4 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
-1.[T][ ] read book
+1.[T][X] read book
 2.[T][ ] borrow book
 3.[D][ ] return book  (by: Sunday)
 4.[E][ ] project meeting  (from: Mon 2pm  to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
+Task list saved.
 Bye. Hope to see you again soon!
 ____________________________________________________________

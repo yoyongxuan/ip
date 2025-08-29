@@ -22,8 +22,8 @@ public class EventTask extends Task {
     }
 
     @Override
-    public String getFileString() {
-        return "E," + super.getFileString() + "/from" + this.from + "/to" + this.to;
+    public String getTaskData() {
+        return "E," + super.getTaskData() + "/from" + this.from + "/to" + this.to;
     }
 
     @Override

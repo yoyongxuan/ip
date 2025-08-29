@@ -2,7 +2,9 @@ package tasks;
 
 import java.util.ArrayList;
 import java.io.FileWriter;
+import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * A list of tasks
@@ -29,19 +31,31 @@ public class TaskList {
     /**
      * Saves the content of the task list to a file such that it can be used to initialize another task list
      *
-     * @param filepath String representing file path of the file task list is to be saved to
+     * @param saveFile File object where the task list is to be saved to
+     * @throws IOException If saveFile cannot be accessed
      */
-    public void saveToFile(String filepath) {
-        try {
-            FileWriter taskWriter = new FileWriter(filepath);
-            for (int i = 0; i < tasks.size(); i++) {
-                taskWriter.write(tasks.get(i).getFileString() + "\n");
-            }
-            taskWriter.close();
-            System.out.println("Task list saved.");
-        } catch (IOException e) {
-            System.out.println("An error occurred, unable to save task list");
+    public void saveToFile(File saveFile) throws IOException {
+        FileWriter taskWriter = new FileWriter(saveFile);
+        for (int i = 0; i < tasks.size(); i++) {
+            taskWriter.write(tasks.get(i).getTaskData() + "\n");
         }
+        taskWriter.close();
+        System.out.println("Task list saved.");
+    }
+
+    /**
+     * Reads the contents of the file and adds tasks to tasklist
+     *
+     * @param saveFile File object where the task list is to be read from
+     * @throws IOException If saveFile cannot be accessed
+     */
+    public void readFromFile(File saveFile) throws IOException {
+        Scanner taskReader = new Scanner(saveFile);
+        while (taskReader.hasNextLine()) {
+            String taskData = taskReader.nextLine();
+            tasks.add(Task.readTaskData(taskData));
+        }
+        taskReader.close();
     }
 
     /**

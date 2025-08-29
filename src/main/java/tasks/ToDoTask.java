@@ -15,8 +15,8 @@ public class ToDoTask extends Task {
     }
 
     @Override
-    public String getFileString() {
-        return "T," + super.getFileString();
+    public String getTaskData() {
+        return "T," + super.getTaskData();
     }
 
     @Override

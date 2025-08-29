@@ -21,9 +21,36 @@ public class Task {
      * Returns string to be saved to file
      * @return String representing this task
      */
-    public String getFileString() {
+    public String getTaskData() {
         String markStr = this.isMarked? "T" : "F";
         return markStr + "," + this.taskDesc;
+    }
+
+    public static Task readTaskData(String taskData) {
+        Task out;
+        String[] taskDataArray = taskData.split(",", 3);
+        String taskType = taskDataArray[0];
+        String markedStr = taskDataArray[1];
+        String taskDesc = taskDataArray[2];
+        switch (taskType) {
+        case "T":
+            out = new ToDoTask(taskDesc);
+            break;
+        case "D":
+            out = new DeadlineTask(taskDesc);
+            break;
+        case "E":
+            out = new EventTask(taskDesc);
+            break;
+        default:
+            out = new Task(taskDesc);
+        }
+
+        if (markedStr.equals("T")) {
+            out.mark();
+        }
+
+        return out;
     }
 
     //Marks task as done

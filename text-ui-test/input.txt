@@ -1,7 +1,13 @@
+list
+delete 4
+delete 3
+delete 2
+delete 1
 todo read book
 todo return book
 mark 2
 unmark 2
+mark 1
 todo borrow book
 list
 deadline return book /by Sunday

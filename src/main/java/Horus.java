@@ -9,30 +9,30 @@ public class Horus {
     static String CHATBOT_NAME = "Horus";
 
     public static void main(String[] args) {
-
+        TaskList tasklist = new TaskList();
         String saveFilePath = "data/taskdata.txt";
 
         File dataDirectory = new File("data");
         if (!dataDirectory.exists()) {
             dataDirectory.mkdir();
         }
-
         File taskdataFile = new File(saveFilePath);
-        boolean newFile = true;
         try {
-            newFile = taskdataFile.createNewFile();
+            boolean isNewFile = taskdataFile.createNewFile();
+            if (!isNewFile) {
+                tasklist.readFromFile(taskdataFile);
+                System.out.println("Retrieving saved tasks from local file.");
+            }
         } catch (IOException e) {
             System.out.println("An error occurred.");
         }
 
 
-        TaskList tasklist = new TaskList();
         String input_str;
         String[] command_task;
         //An array of 2 strings. First item is a command if present, second item is a string representing a task
         Scanner scanner = new Scanner(System.in);
         boolean isExit = false;
-
 
         greet();
 
@@ -46,6 +46,7 @@ public class Horus {
                 switch (command_task[0]) {
                 case "bye":
                     isExit = true;
+                    tasklist.saveToFile(taskdataFile);
                     exit();
                     break;
                 case "list":
@@ -92,6 +93,8 @@ public class Horus {
                                 + command_task[0] );
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("File to be saved from not found, file not saved.");
             }
             print_line();
         }
@@ -107,7 +110,7 @@ public class Horus {
     }
 
     /**
-     * Prints an exit message surrounded by lines
+     * Prints an exit message
      */
     public static void exit() {
         System.out.println("Bye. Hope to see you again soon!" );
