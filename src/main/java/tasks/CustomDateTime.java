@@ -75,6 +75,9 @@ public class CustomDateTime {
         return dateStr + timeStr + remainingStr;
     }
 
+    /**
+     * Returns a string similar to the input dateTimeStr
+     */
     public String getData() {
         String dateStr = date == null ? "" : date.format( DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ";
         String timeStr = time == null ? "" : time.format( DateTimeFormatter.ofPattern("HHmm"))  + " ";
