@@ -26,4 +26,6 @@ list
 deadline do homework /by 29/8/2025 1600 before the lecture
 event training /from 30/8/2025 after lunch /to 30/8/2025 1400
 list
+find book
+find [D]
 bye

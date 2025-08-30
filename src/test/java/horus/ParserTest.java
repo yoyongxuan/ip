@@ -84,6 +84,20 @@ public class ParserTest {
         assertEquals(expected.showList(), actual.showList()  );
     }
 
+    @Test
+    public void testFindCommand() throws InvalidInputException {
+        TaskList taskList = new TaskList();
+        Parser parser = new Parser(taskList);
+        taskList.addTask("borrow book", TaskList.taskTypes.TODO);
+        taskList.addTask("read book", TaskList.taskTypes.TODO);
+        taskList.addTask("return book /by 19/09/2025", TaskList.taskTypes.DEADLINE);
+        taskList.addTask("homework /by 1900", TaskList.taskTypes.DEADLINE);
+        taskList.addTask("class /from 1300 /to 1500", TaskList.taskTypes.EVENT);
+
+
+        assertEquals(taskList.find("book") , parser.parse("find book"));
+        assertEquals(taskList.find("[D]") , parser.parse("find [D]"));
+    }
 
     @Test
     public void testMissingDetails() {

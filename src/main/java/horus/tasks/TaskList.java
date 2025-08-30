@@ -160,4 +160,30 @@ public class TaskList {
         out += "\nNow you have " + tasks.size() + " tasks in the list.\n";
         return out;
     }
+
+    /**
+     * Finds all tasks which contains input substring
+     *
+     * @param substring String which may be contained by tasks
+     * @return A string with each line representing a task in TaskList which contains substring
+     */
+    public String find(String substring) {
+        String out = "";
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            String taskStr = tasks.get(i).toString();
+            if (taskStr.contains(substring)) {
+                count++;
+                out += count + "." + taskStr + "\n";
+            }
+        }
+
+        if (count == 0) {
+            return "There are no matching tasks in your list.";
+        } else {
+            return "Here are the matching tasks in your list:\n" + out;
+        }
+
+
+    }
 }
