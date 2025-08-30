@@ -52,6 +52,8 @@ public class Parser {
                 return taskList.addTask(inputArray[1], TaskList.taskTypes.DEADLINE);
             case "event":
                 return taskList.addTask(inputArray[1], TaskList.taskTypes.EVENT);
+            case "find":
+                return taskList.find(inputArray[1]);
             default:
                 return "Error: '" + inputStr + "' is not a valid command.\n";
             }
