@@ -19,8 +19,8 @@ public class CustomDateTime {
      * Creates a CustomDateTime object based on dateTimeStr
      **
      * @param dateTimeStr String which may or may not start with a date and time
-     * @throws InvalidInputException If dateTimeStr contains a substring with the correct date or time formatting
-     *         but is not a valid date or time
+     * @throws InvalidInputException If dateTimeStr contains a substring
+     *         with the correct date or time formatting (dd/MM/yyyy and HHmm) but is not a valid date or time
      */
     public CustomDateTime(String dateTimeStr) throws InvalidInputException {
         date = null;
@@ -78,6 +78,8 @@ public class CustomDateTime {
 
     /**
      * Returns a string similar to the input dateTimeStr
+     *
+     * @return A string from which a similar CustomDateTime object may be initialized from
      */
     public String getData() {
         String dateStr = date == null ? "" : date.format( DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ";

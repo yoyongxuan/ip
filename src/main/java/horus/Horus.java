@@ -4,13 +4,21 @@ import horus.tasks.TaskList;
 
 import java.io.IOException;
 
+/**
+ * A program that can be used to manage a list of tasks and save onto a local file
+ */
 public class Horus {
-
     private final TaskList taskList;
     private final Storage saveFile;
     private final Ui ui;
     private final Parser parser;
 
+    /**
+     * Initializes Horus and retrieves any previously saved tasks from a save file
+     *
+     * @param filePath A string representing the file path where any tasks added will be saved.
+     *                 If the file already exists, Horus will initialize with any tasks saved on the file
+     */
     public Horus(String filePath) {
         taskList = new TaskList();
         parser = new Parser(taskList);
@@ -29,6 +37,9 @@ public class Horus {
         }
     }
 
+    /**
+     * Runs the Horus program, where the program will continuously execute input commands until program exits
+     */
     public void run() {
         String inputStr;
         String outputStr;

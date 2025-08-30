@@ -10,7 +10,9 @@ public class DeadlineTask extends Task {
      * Creates a deadline task
      **
      * @param taskStr String representing the description of task to be created
-     *                and a deadline denoted by /by
+     *                and a deadline denoted by /by.
+     * @throws InvalidInputException If dateTimeStr contains a substring
+     *         with the correct date or time formatting (dd/MM/yyyy and HHmm) but is not a valid date or time
      */
     public DeadlineTask(String taskStr) throws InvalidInputException{
         super(taskStr.substring(0,taskStr.indexOf("/by")) );

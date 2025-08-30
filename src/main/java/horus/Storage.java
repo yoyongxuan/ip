@@ -44,7 +44,7 @@ public class Storage {
     /**
      * Writes the contents of fileContents into this.file
      *
-     * @param fileContents An array of string with each string representing a line to be written
+     * @param fileContents An array of strings with each string representing a line to be written
      * @return String to be printed by Ui
      */
     public String writeToFile(String[] fileContents) {
@@ -65,7 +65,7 @@ public class Storage {
     /**
      * Reads and returns the contents of this.file
      *
-     * @return An array of string with each string representing a line in the file
+     * @return An array of strings with each string representing a line in the file
      * @throws IOException if file cannot be accessed
      */
     public String[] readFile() throws IOException {

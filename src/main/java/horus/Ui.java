@@ -25,7 +25,7 @@ public class Ui {
      * Prints the contents of outputArray surrounded by lines
      *
      * @param outputArray An array containing strings to be printed,
-     *                    with each string representing a line on the output terminal
+     *                    with each string representing a line to be printed on the output terminal
      */
     public void printOutputArray(String[] outputArray) {
         printLine();

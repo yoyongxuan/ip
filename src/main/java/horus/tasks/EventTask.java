@@ -13,6 +13,8 @@ public class EventTask extends Task {
      * @param taskStr String representing the description of task to be created,
      *                the start of the event denoted by /from
      *                and the end of the event denoted by /to
+     * @throws InvalidInputException If dateTimeStr contains a substring
+     *         with the correct date or time formatting (dd/MM/yyyy and HHmm) but is not a valid date or time
      */
     public EventTask(String taskStr) throws InvalidInputException {
         super(taskStr.substring(0,taskStr.indexOf("/from")) );

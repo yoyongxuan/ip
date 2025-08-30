@@ -19,13 +19,20 @@ public class Task {
 
     /**
      * Returns string to be saved to file
-     * @return String representing this task
+     *
+     * @return A string from which a similar Task object may be initialized from
      */
     public String getTaskData() {
         String markStr = this.isMarked? "T" : "F";
         return markStr + "," + this.taskDesc;
     }
 
+    /**
+     * Creates a Task from data previously saved to a file with Task.getTaskData()
+     *
+     * @param taskData A string containing task data, similar to one from Task.getTaskData()
+     * @return A Task object whose getTaskData() method will return a string similar to taskData
+     */
     public static Task readTaskData(String taskData) throws InvalidInputException {
         Task out;
         String[] taskDataArray = taskData.split(",", 3);
@@ -62,12 +69,16 @@ public class Task {
     }
 
 
-    //Marks task as done
+    /**
+     * Marks task as done
+     */
     public void mark() {
         isMarked = true;
     }
 
-    //Unmarks task
+    /**
+     * Unmarks task as done
+     */
     public void unmark() {
         isMarked = false;
     }
