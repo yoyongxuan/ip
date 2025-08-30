@@ -1,4 +1,4 @@
-package tasks;
+package horus.tasks;
 
 /**
  * An object representing a task
@@ -38,14 +38,14 @@ public class Task {
             break;
         case "D":
             if(!taskStr.contains("/by")){
-                throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
+                throw new InvalidInputException("Error: Deadline horus.tasks must have a deadline (denoted with /by).");
             }
             out = new DeadlineTask(taskStr);
             break;
         case "E":
             if(!taskStr.contains("/from") || !taskStr.contains("/to")){
                 throw new InvalidInputException(
-                        "Error: Event tasks must have a start and end (denoted with /from and /to).");
+                        "Error: Event horus.tasks must have a start and end (denoted with /from and /to).");
             }
             out = new EventTask(taskStr);
             break;

@@ -1,4 +1,4 @@
-package tasks;
+package horus.tasks;
 
 /**
  * An object representing a task to be done

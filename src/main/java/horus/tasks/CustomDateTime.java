@@ -1,4 +1,4 @@
-package tasks;
+package horus.tasks;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -26,6 +26,7 @@ public class CustomDateTime {
         date = null;
         time = null;
         remainingStr = "";
+        dateTimeStr = dateTimeStr.strip();
         String[] dateTimeArray = dateTimeStr.split(" ", 3);
         for (int i = 0; i < dateTimeArray.length; i++ ) {
             if (dateTimeArray[i].length() == 10

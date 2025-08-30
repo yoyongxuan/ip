@@ -1,10 +1,6 @@
-package tasks;
+package horus.tasks;
 
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * A list of tasks
@@ -29,37 +25,39 @@ public class TaskList {
     }
 
     /**
-     * Saves the content of the task list to a file such that it can be used to initialize another task list
+     * Saves the content of the task list to an array to be saved to a file
      *
-     * @param saveFile File object where the task list is to be saved to
-     * @throws IOException If saveFile cannot be accessed
+     * @return Array of strings with containing task data to be saved to a file
      */
-    public void saveToFile(File saveFile) throws IOException {
-        FileWriter taskWriter = new FileWriter(saveFile);
+    public String[] saveToFile() {
+        String[] fileContents = new String[tasks.size()];
+
         for (int i = 0; i < tasks.size(); i++) {
-            taskWriter.write(tasks.get(i).getTaskData() + "\n");
+            fileContents[i] = tasks.get(i).getTaskData();
         }
-        taskWriter.close();
-        System.out.println("Task list saved.");
+
+        return fileContents;
     }
 
     /**
-     * Reads the contents of the file and adds tasks to tasklist
+     *Adds the tasks in fileData to tasklist
      *
-     * @param saveFile File object where the task list is to be read from
-     * @throws IOException If saveFile cannot be accessed
+     * @param fileData Array of strings representing contents of a save file
+     * @return String to be printed by Ui
      */
-    public void readFromFile(File saveFile) throws IOException {
-        Scanner taskReader = new Scanner(saveFile);
-        while (taskReader.hasNextLine()) {
-            String taskData = taskReader.nextLine();
+    public String readFromFile(String[] fileData)  {
+        String out = "";
+        int addedTasks = 0;
+        for (int i = 0; i < fileData.length; i++) {
             try {
-                tasks.add(Task.readTaskData(taskData));
+                tasks.add(Task.readTaskData(fileData[i]));
+                addedTasks++;
             } catch (InvalidInputException e) {
-                System.out.println("Local file corrupted. " + taskData + " is not a valid task");
+                out += "Local file corrupted. " + fileData[i] + " is not a valid task\n";
             }
         }
-        taskReader.close();
+        out += addedTasks + " tasks retrieved.";
+        return out;
     }
 
     /**
@@ -67,10 +65,13 @@ public class TaskList {
      *
      * @param taskStr String containing task description and other details such as /to /from and /by
      * @param taskType enum representing type of task to be added
+     * @return String to be printed by Ui
      * @throws InvalidInputException If taskStr is invalid
      */
-    public void addTask(String taskStr, taskTypes taskType) throws InvalidInputException {
-//            print_line();
+    public String addTask(String taskStr, taskTypes taskType) throws InvalidInputException {
+        if (taskStr == "") {
+            throw new InvalidInputException("Error: Description of task cannot be empty.");
+        }
         switch(taskType) {
         case TODO:
             tasks.add(new ToDoTask(taskStr));
@@ -89,67 +90,74 @@ public class TaskList {
             tasks.add(new EventTask(taskStr));
             break;
         }
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + tasks.get(tasks.size()-1));
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        return "Got it. I've added this task:\n  " + tasks.get(tasks.size()-1) + "\nNow you have " + tasks.size() + " tasks in the list.\n";
     }
 
     //Prints the contents of the taskList
-    public void showList() {
+    /**
+     * Returns a string represnting the contents of taskList to be printed
+     *
+     * @return A string with each line representing a task in tasklist
+     */
+    public String showList() {
+        String out = "";
         for(int i = 0; i < tasks.size(); i++) {
-            System.out.println( i+1 + "." + tasks.get(i).toString() );
+            out +=  i+1 + "." + tasks.get(i).toString() + "\n";
         }
+        return out;
     }
 
     /**
      * Marks selected task as done
      *
      * @param taskId String representing the index of task to be marked
+     * @return String to be printed by Ui
      * @throws InvalidInputException If taskId is not a valid task index
      */
-    public void markTask(String taskId) throws InvalidInputException {
-        int task_index = Integer.parseInt(taskId) - 1;
-        if(task_index >= tasks.size()) {
+    public String markTask(String taskId) throws InvalidInputException {
+        int taskIndex = Integer.parseInt(taskId) - 1;
+        if(taskIndex >= tasks.size()) {
             throw new InvalidInputException(
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
-        tasks.get(task_index).mark();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + tasks.get(task_index));
+        tasks.get(taskIndex).mark();
+        return "Nice! I've marked this task as done:\n  " + tasks.get(taskIndex) + "\n";
     }
 
     /**
      * Unmarks selected task
      *
      * @param taskId String representing the index of task to be unmarked
+     * @return String to be printed by Ui
      * @throws InvalidInputException If taskId is not a valid task index
      */
-    public void unmarkTask(String taskId) throws InvalidInputException {
+    public String unmarkTask(String taskId) throws InvalidInputException {
         int task_index = Integer.parseInt(taskId) - 1;
         if(task_index >= tasks.size()) {
             throw new InvalidInputException(
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
         tasks.get(task_index).unmark();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("  " + tasks.get(task_index));
+        return "OK, I've marked this task as not done yet:\n  " + tasks.get(task_index) + "\n";
     }
 
     /**
      * Deletes selected task
      *
      * @param taskId String representing the index of task to be deleted
+     * @return String to be printed by Ui
      * @throws InvalidInputException If taskId is not a valid task index
      */
-    public void delete(String taskId) throws InvalidInputException {
+    public String delete(String taskId) throws InvalidInputException {
         int task_index = Integer.parseInt(taskId) - 1;
         if(task_index >= tasks.size()) {
             throw new InvalidInputException(
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + tasks.get(task_index));
+
+        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index);
         tasks.remove(task_index);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        out += "\nNow you have " + tasks.size() + " tasks in the list.\n";
+        return out;
     }
 }
