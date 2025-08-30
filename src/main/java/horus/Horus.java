@@ -25,10 +25,8 @@ public class Horus {
         ui = new Ui();
         try {
             saveFile = new Storage(filePath);
-            if (!saveFile.isNew()) {
+            if (!saveFile.checkIsNew()) {
                 ui.print("Retrieving saved tasks from local file.");
-
-//                ui.printOutputArray(saveFile.readFile());
                 ui.print(taskList.readFromFile(saveFile.readFile()));
             }
         } catch (IOException e) {
@@ -41,19 +39,18 @@ public class Horus {
      * Runs the Horus program, where the program will continuously execute input commands until program exits
      */
     public void run() {
-        String inputStr;
-        String outputStr;
         boolean isExit = false;
         ui.printOutputString("Hello! I'm Horus\nWhat can I do for you?\n");
+
         while (!isExit) {
-            inputStr = ui.getInputStr();
+            String inputStr = ui.getInputStr();
 
             if (inputStr.equals("bye")) {
                 isExit = true;
                 ui.print(saveFile.writeToFile(taskList.saveToFile()));
             }
 
-            outputStr = parser.parse(inputStr);
+            String outputStr = parser.parse(inputStr);
             ui.printOutputString(outputStr);
         }
 

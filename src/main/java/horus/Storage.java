@@ -3,6 +3,7 @@ package horus;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Scanner;
  */
 public class Storage {
     private final File file;
-    private boolean isNewFile;
+    private final boolean isNewFile;
 
     /**
      * Creates an object representing the file at the input file path
@@ -37,7 +38,7 @@ public class Storage {
      *
      * @return true if file was newly created and false otherwise
      */
-    public boolean isNew() {
+    public boolean checkIsNew() {
         return isNewFile;
     }
 
@@ -48,9 +49,8 @@ public class Storage {
      * @return String to be printed by Ui
      */
     public String writeToFile(String[] fileContents) {
-        FileWriter taskWriter;
         try {
-            taskWriter = new FileWriter(file);
+            FileWriter taskWriter = new FileWriter(file);
             for (int i = 0; i < fileContents.length; i++) {
                 taskWriter.write(fileContents[i] + "\n");
             }
@@ -71,6 +71,7 @@ public class Storage {
     public String[] readFile() throws IOException {
         int lineCount = 0;
         Scanner scanner = new Scanner(file);
+
         while (scanner.hasNextLine()) {
             scanner.nextLine();
             lineCount++;
@@ -80,11 +81,13 @@ public class Storage {
 
         lineCount = 0;
         scanner = new Scanner(file);
+
         while (scanner.hasNextLine()) {
             String taskData = scanner.nextLine();
             out[lineCount] = taskData;
             lineCount++;
         }
+
         scanner.close();
         return out;
     }

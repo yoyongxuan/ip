@@ -28,6 +28,7 @@ public class CustomDateTime {
         remainingStr = "";
         dateTimeStr = dateTimeStr.strip();
         String[] dateTimeArray = dateTimeStr.split(" ", 3);
+
         for (int i = 0; i < dateTimeArray.length; i++ ) {
             if (dateTimeArray[i].length() == 10
                     && dateTimeArray[i].charAt(2) == '/'
@@ -61,7 +62,7 @@ public class CustomDateTime {
         } else if (time == null) {
             datetime = LocalDateTime.of(date, LocalTime.of(0,0) );
         } else {
-            datetime = LocalDateTime.of(date, time );
+            datetime = LocalDateTime.of(date, time);
         }
     }
 

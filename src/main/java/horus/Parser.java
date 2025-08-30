@@ -27,13 +27,11 @@ public class Parser {
      */
     public String parse(String inputStr) {
         String[] inputArray = inputStr.split("\\s+",2);
+        //The first element of inputArray represents the command to be executed
+        //      while the second element represents details of how to execute said command but may or may not exist
+
         String command = inputArray[0];
-//        String details;
-//        if (inputArray.length == 1) {
-//            details = "";
-//        } else {
-//            details = inputArray[1];
-//        }
+
         try {
             switch (command) {
             case "bye":
