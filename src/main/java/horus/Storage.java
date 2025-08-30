@@ -49,9 +49,8 @@ public class Storage {
      * @return String to be printed by Ui
      */
     public String writeToFile(String[] fileContents) {
-        FileWriter taskWriter;
         try {
-            taskWriter = new FileWriter(file);
+            FileWriter taskWriter = new FileWriter(file);
             for (int i = 0; i < fileContents.length; i++) {
                 taskWriter.write(fileContents[i] + "\n");
             }
@@ -72,6 +71,7 @@ public class Storage {
     public String[] readFile() throws IOException {
         int lineCount = 0;
         Scanner scanner = new Scanner(file);
+
         while (scanner.hasNextLine()) {
             scanner.nextLine();
             lineCount++;
@@ -81,11 +81,13 @@ public class Storage {
 
         lineCount = 0;
         scanner = new Scanner(file);
+
         while (scanner.hasNextLine()) {
             String taskData = scanner.nextLine();
             out[lineCount] = taskData;
             lineCount++;
         }
+
         scanner.close();
         return out;
     }

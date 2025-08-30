@@ -28,19 +28,18 @@ public class Horus {
     }
 
     public void run() {
-        String inputStr;
-        String outputStr;
         boolean isExit = false;
         ui.printOutputString("Hello! I'm Horus\nWhat can I do for you?\n");
+
         while (!isExit) {
-            inputStr = ui.getInputStr();
+            String inputStr = ui.getInputStr();
 
             if (inputStr.equals("bye")) {
                 isExit = true;
                 ui.print(saveFile.writeToFile(taskList.saveToFile()));
             }
 
-            outputStr = parser.parse(inputStr);
+            String outputStr = parser.parse(inputStr);
             ui.printOutputString(outputStr);
         }
 
