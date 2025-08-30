@@ -17,10 +17,8 @@ public class Horus {
         ui = new Ui();
         try {
             saveFile = new Storage(filePath);
-            if (!saveFile.isNew()) {
+            if (!saveFile.checkIsNew()) {
                 ui.print("Retrieving saved tasks from local file.");
-
-//                ui.printOutputArray(saveFile.readFile());
                 ui.print(taskList.readFromFile(saveFile.readFile()));
             }
         } catch (IOException e) {

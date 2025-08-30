@@ -3,6 +3,7 @@ package horus;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.Scanner;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Scanner;
  */
 public class Storage {
     private final File file;
-    private boolean isNewFile;
+    private final boolean isNewFile;
 
     /**
      * Creates an object representing the file at the input file path
@@ -37,7 +38,7 @@ public class Storage {
      *
      * @return true if file was newly created and false otherwise
      */
-    public boolean isNew() {
+    public boolean checkIsNew() {
         return isNewFile;
     }
 
