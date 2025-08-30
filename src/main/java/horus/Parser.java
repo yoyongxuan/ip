@@ -72,9 +72,6 @@ public class Parser {
         } catch (InvalidInputException e) {
             return e.getMessage() +"\n";
         }
-//        catch (IOException e) {
-//            System.out.println("File to be saved from not found, file not saved.");
-//        }
         return "";
     }
 }
