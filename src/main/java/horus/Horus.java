@@ -12,6 +12,8 @@ public class Horus {
     private final Storage saveFile;
     private final Ui ui;
     private final Parser parser;
+    private static final String DEFAULT_FILEPATH = "data/taskdata.txt";
+    private String greetingMessage;
 
     /**
      * Initializes Horus and retrieves any previously saved tasks from a save file
@@ -23,16 +25,25 @@ public class Horus {
         taskList = new TaskList();
         parser = new Parser(taskList);
         ui = new Ui();
+        greetingMessage = "";
         try {
             saveFile = new Storage(filePath);
             if (!saveFile.checkIsNew()) {
-                ui.print("Retrieving saved tasks from local file.");
-                ui.print(taskList.readFromFile(saveFile.readFile()));
+                greetingMessage += "Retrieving saved tasks from local file.\n";
+                greetingMessage += taskList.readFromFile(saveFile.readFile());
             }
         } catch (IOException e) {
-            ui.print("Error: Unable to access local files");
+            greetingMessage += "Error: Unable to access local files";
             throw new RuntimeException();
         }
+        greetingMessage += "\nHello! I'm Horus\nWhat can I do for you?";
+    }
+
+    /**
+     * Initializes Horus using the default filepath
+     */
+    public Horus() {
+        this(Horus.DEFAULT_FILEPATH);
     }
 
     /**
@@ -40,22 +51,44 @@ public class Horus {
      */
     public void run() {
         boolean isExit = false;
-        ui.printOutputString("Hello! I'm Horus\nWhat can I do for you?\n");
+        ui.printOutputString(greetingMessage);
 
         while (!isExit) {
             String inputStr = ui.getInputStr();
-
-            if (inputStr.equals("bye")) {
-                isExit = true;
-                ui.print(saveFile.writeToFile(taskList.saveToFile()));
-            }
-
-            String outputStr = parser.parse(inputStr);
+            String outputStr = this.getResponse(inputStr);
             ui.printOutputString(outputStr);
         }
 
     }
 
+    /**
+     * Get a greeting message to print when starting Horus
+     *
+     * @return String representing greeting message
+     */
+    public String getGreetingMessage() {
+        return this.greetingMessage;
+    }
+
+    /**
+     * Parses and executes user commands and return and response for the user
+     *
+     * @param inputStr String representing user command
+     * @return String representing response for the user
+     */
+    public String getResponse(String inputStr) {
+        String outputStr = "";
+        if (inputStr.equals("bye")) {
+            outputStr += saveFile.writeToFile(taskList.saveToFile());
+        }
+
+        outputStr += parser.parse(inputStr);
+        return outputStr;
+    }
+
+    /**
+     * Initializes and run Horus using Java's IO
+     */
     public static void main(String[] args) {
         String filepath = "data/taskdata.txt";
         Horus horus = new Horus(filepath);
