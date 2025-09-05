@@ -78,7 +78,7 @@ public class Horus {
      */
     public String getResponse(String inputStr) {
         String outputStr = "";
-        if (inputStr.equals("bye")) {
+        if (inputStr.equals("bye") || inputStr.equals("save")) {
             outputStr += saveFile.writeToFile(taskList.saveToFile());
         }
 

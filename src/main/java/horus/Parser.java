@@ -36,6 +36,8 @@ public class Parser {
             switch (command) {
             case "bye":
                 return "Bye. Hope to see you again soon!\n";
+            case "save":
+                return "\n";
             case "list":
                 return taskList.showList();
             case "mark":
