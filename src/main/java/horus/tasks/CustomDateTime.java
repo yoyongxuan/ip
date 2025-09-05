@@ -19,10 +19,8 @@ public class CustomDateTime {
      * Creates a CustomDateTime object based on dateTimeStr
      **
      * @param dateTimeStr String which may or may not start with a date and time
-     * @throws InvalidInputException If dateTimeStr contains a substring
-     *         with the correct date or time formatting (dd/MM/yyyy and HHmm) but is not a valid date or time
      */
-    public CustomDateTime(String dateTimeStr) throws InvalidInputException {
+    public CustomDateTime(String dateTimeStr) {
         date = null;
         time = null;
         remainingStr = "";
@@ -30,28 +28,20 @@ public class CustomDateTime {
         String[] dateTimeArray = dateTimeStr.split(" ", 3);
 
         for (int i = 0; i < dateTimeArray.length; i++ ) {
-            if (dateTimeArray[i].length() == 10
-                    && dateTimeArray[i].charAt(2) == '/'
-                    && dateTimeArray[i].charAt(5) == '/'  ) {
-                try {
-                    date = LocalDate.parse(dateTimeArray[i], DateTimeFormatter.ofPattern("dd/MM/yyyy") );
-                } catch (DateTimeException e) {
-                    throw new InvalidInputException("Error: " + dateTimeArray[i] + " is not a valid date!");
-                }
-            } else if ( dateTimeArray[i].length() == 4
-                    && Character.isDigit(dateTimeArray[i].charAt(0))
-                    && Character.isDigit(dateTimeArray[i].charAt(1))
-                    && Character.isDigit(dateTimeArray[i].charAt(2))
-                    && Character.isDigit(dateTimeArray[i].charAt(3))) {
-                try {
-                    time = LocalTime.parse(dateTimeArray[i], DateTimeFormatter.ofPattern("HHmm") );
-                } catch (DateTimeException e) {
-                    throw new InvalidInputException("Error: " + dateTimeArray[i] + " is not a valid time!");
-                }
-            } else {
-                remainingStr += dateTimeArray[i];
-                remainingStr += " ";
+            try {
+                date = LocalDate.parse(dateTimeArray[i], DateTimeFormatter.ofPattern("d/M/yyyy") );
+                continue;
+            } catch (DateTimeException e) {
             }
+            try {
+                time = LocalTime.parse(dateTimeArray[i], DateTimeFormatter.ofPattern("HHmm") );
+                continue;
+            } catch (DateTimeException e) {
+            }
+
+            remainingStr += dateTimeArray[i];
+            remainingStr += " ";
+
         }
         remainingStr = remainingStr.strip();
 
