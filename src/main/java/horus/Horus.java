@@ -55,22 +55,27 @@ public class Horus {
 
         while (!isExit) {
             String inputStr = ui.getInputStr();
-
-            if (inputStr.equals("bye")) {
-                isExit = true;
-                ui.print(saveFile.writeToFile(taskList.saveToFile()));
-            }
-
-            String outputStr = parser.parse(inputStr);
+            String outputStr = this.getResponse(inputStr);
             ui.printOutputString(outputStr);
         }
 
     }
 
+    /**
+     * Get a greeting message to print when starting Horus
+     *
+     * @return String representing greeting message
+     */
     public String getGreetingMessage() {
         return this.greetingMessage;
     }
 
+    /**
+     * Parses and executes user commands and return and response for the user
+     *
+     * @param inputStr String representing user command
+     * @return String representing response for the user
+     */
     public String getResponse(String inputStr) {
         String outputStr = "";
         if (inputStr.equals("bye")) {
@@ -81,6 +86,9 @@ public class Horus {
         return outputStr;
     }
 
+    /**
+     * Initializes and run Horus using Java's IO
+     */
     public static void main(String[] args) {
         String filepath = "data/taskdata.txt";
         Horus horus = new Horus(filepath);
