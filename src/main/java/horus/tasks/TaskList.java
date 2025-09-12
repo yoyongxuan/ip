@@ -33,7 +33,8 @@ public class TaskList {
         String[] fileContents = new String[tasks.size()];
 
         for (int i = 0; i < tasks.size(); i++) {
-            fileContents[i] = tasks.get(i).getTaskData();
+            Task currentTask = tasks.get(i);
+            fileContents[i] = currentTask.getTaskData();
         }
 
         return fileContents;
@@ -48,6 +49,7 @@ public class TaskList {
     public String readFromFile(String[] fileData)  {
         String out = "";
         int addedTasks = 0;
+
         for (int i = 0; i < fileData.length; i++) {
             try {
                 tasks.add(Task.readTaskData(fileData[i]));
@@ -72,8 +74,6 @@ public class TaskList {
         if (taskStr == "") {
             throw new InvalidInputException("Error: Description of task cannot be empty.");
         }
-        int originalTaskListSize = tasks.size();
-
         switch(taskType) {
         case TODO:
             tasks.add(new ToDoTask(taskStr));
@@ -93,10 +93,8 @@ public class TaskList {
             break;
         }
 
-        int newTaskListSize = tasks.size();
-        assert newTaskListSize == originalTaskListSize - 1;
-
-        return "Got it. I've added this task:\n  " + tasks.get(tasks.size()-1) + "\nNow you have " + newTaskListSize + " tasks in the list.\n";
+        Task addedTask = tasks.get(tasks.size()-1);
+        return "Got it. I've added this task:\n  " + addedTask.toString() + "\nNow you have " + tasks.size() + " tasks in the list.\n";
     }
 
     //Prints the contents of the taskList
@@ -108,7 +106,9 @@ public class TaskList {
     public String showList() {
         String out = "";
         for(int i = 0; i < tasks.size(); i++) {
-            out +=  i+1 + "." + tasks.get(i).toString() + "\n";
+            int taskId = i+1;
+            Task currentTask = tasks.get(i);
+            out += (taskId + "." + currentTask.toString() + "\n");
         }
         return out;
     }
@@ -156,18 +156,14 @@ public class TaskList {
      */
     public String delete(String taskId) throws InvalidInputException {
         int task_index = Integer.parseInt(taskId) - 1;
-        int originalTaskListSize = tasks.size();
-        if(task_index >= originalTaskListSize) {
+        if(task_index >= tasks.size()) {
             throw new InvalidInputException(
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
-        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index).toString();
+
+        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index);
         tasks.remove(task_index);
-
-        int newTaskListSize = tasks.size();
-        assert newTaskListSize == originalTaskListSize - 1;
-
-        out += "\nNow you have " + newTaskListSize + " tasks in the list.\n";
+        out += "\nNow you have " + tasks.size() + " tasks in the list.\n";
         return out;
     }
 
@@ -179,16 +175,16 @@ public class TaskList {
      */
     public String find(String substring) {
         String out = "";
-        int count = 0;
+        int matchingTasksCount = 0;
         for (int i = 0; i < tasks.size(); i++) {
             String taskStr = tasks.get(i).toString();
             if (taskStr.contains(substring)) {
-                count++;
-                out += count + "." + taskStr + "\n";
+                matchingTasksCount++;
+                out += matchingTasksCount + "." + taskStr + "\n";
             }
         }
 
-        if (count == 0) {
+        if (matchingTasksCount == 0) {
             return "There are no matching tasks in your list.";
         } else {
             return "Here are the matching tasks in your list:\n" + out;

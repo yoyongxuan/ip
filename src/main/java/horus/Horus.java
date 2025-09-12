@@ -36,6 +36,7 @@ public class Horus {
             greetingMessage += "Error: Unable to access local files";
             throw new RuntimeException();
         }
+
         greetingMessage += "\nHello! I'm Horus\nWhat can I do for you?";
     }
 
@@ -78,8 +79,10 @@ public class Horus {
      */
     public String getResponse(String inputStr) {
         String outputStr = "";
-        if (inputStr.equals("bye") || inputStr.equals("save")) {
-            outputStr += saveFile.writeToFile(taskList.saveToFile());
+
+        boolean isSaveCommand = inputStr.equals("bye") || inputStr.equals("save");
+        if (isSaveCommand) {
+            outputStr += this.save();
         }
 
         outputStr += parser.parse(inputStr);
@@ -87,11 +90,21 @@ public class Horus {
     }
 
     /**
+     * Saves contents of taskList into local file
+     *
+     * @return String representing response for the user
+     */
+    public String save() {
+        String[] taskListData = taskList.saveToFile();
+        String outputStr = saveFile.writeToFile(taskListData);
+        return outputStr;
+    }
+
+    /**
      * Initializes and run Horus using Java's IO
      */
     public static void main(String[] args) {
-        String filepath = "data/taskdata.txt";
-        Horus horus = new Horus(filepath);
+        Horus horus = new Horus();
         horus.run();
     }
 

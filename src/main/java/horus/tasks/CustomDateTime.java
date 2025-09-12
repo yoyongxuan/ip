@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 public class CustomDateTime {
     LocalDate date;
     LocalTime time;
-    LocalDateTime datetime;
     String remainingStr;
 
     /**
@@ -32,11 +31,13 @@ public class CustomDateTime {
                 date = LocalDate.parse(dateTimeArray[i], DateTimeFormatter.ofPattern("d/M/yyyy") );
                 continue;
             } catch (DateTimeException e) {
+                //Will save contents to remainingStr instead of initializing a date
             }
             try {
                 time = LocalTime.parse(dateTimeArray[i], DateTimeFormatter.ofPattern("HHmm") );
                 continue;
             } catch (DateTimeException e) {
+                //Will save contents to remainingStr instead of initializing a time
             }
 
             remainingStr += dateTimeArray[i];
@@ -44,16 +45,6 @@ public class CustomDateTime {
 
         }
         remainingStr = remainingStr.strip();
-
-        if (date == null && time == null) {
-            datetime = null;
-        } else if (date == null) {
-            datetime = LocalDateTime.of(LocalDate.now() , time);
-        } else if (time == null) {
-            datetime = LocalDateTime.of(date, LocalTime.of(0,0) );
-        } else {
-            datetime = LocalDateTime.of(date, time);
-        }
     }
 
     /**
