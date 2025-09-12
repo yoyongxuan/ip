@@ -26,7 +26,7 @@ public class Storage {
 
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            directory.mkdirs();
+            directory.mkdirs(); //Create relevant directories if they don't already exist
         }
 
         file = new File(filePath);
@@ -69,26 +69,29 @@ public class Storage {
      * @throws IOException if file cannot be accessed
      */
     public String[] readFile() throws IOException {
-        int lineCount = 0;
         Scanner scanner = new Scanner(file);
 
+        //Counts number of lines in the file
+        int lineCount = 0;
         while (scanner.hasNextLine()) {
             scanner.nextLine();
             lineCount++;
         }
 
-        String[] out = new String[lineCount];
+        String[] fileContents = new String[lineCount];
 
-        lineCount = 0;
+        //Resetting the line the scanner is at
+        scanner.close();
         scanner = new Scanner(file);
 
+        int lineNumber = 0;
         while (scanner.hasNextLine()) {
             String taskData = scanner.nextLine();
-            out[lineCount] = taskData;
-            lineCount++;
+            fileContents[lineNumber] = taskData;
+            lineNumber++;
         }
 
         scanner.close();
-        return out;
+        return fileContents;
     }
 }

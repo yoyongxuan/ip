@@ -16,7 +16,7 @@ public class DeadlineTask extends Task {
      */
     public DeadlineTask(String taskStr) throws InvalidInputException{
         super(taskStr.substring(0,taskStr.indexOf("/by")) );
-        by =  new CustomDateTime(taskStr.substring(taskStr.indexOf("/by") + 3));
+        by = new CustomDateTime(taskStr.substring(taskStr.indexOf("/by") + 3));
     }
 
     @Override

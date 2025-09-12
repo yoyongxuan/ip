@@ -67,6 +67,8 @@ public class Parser {
                 case "deadline":
                 case "event":
                     return "Error: Description of task cannot be empty.\n";
+                default:
+                    throw new RuntimeException(e); //Unknown source of exception
             }
         } catch (NumberFormatException e) {
             return "Error: " + inputArray[1] + " is not an integer. Please input task number to "
@@ -74,6 +76,5 @@ public class Parser {
         } catch (InvalidInputException e) {
             return e.getMessage() +"\n";
         }
-        return "";
     }
 }
