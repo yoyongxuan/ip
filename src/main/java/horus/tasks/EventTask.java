@@ -25,11 +25,37 @@ public class EventTask extends Task {
 
     @Override
     public String getTaskData() {
-        return "E," + super.getTaskData() + "/from " + this.from.getData() + " /to " + this.to.getData();
+        String taskData = "E," + super.getTaskData() + "/from " + this.from.getData() + " /to " + this.to.getData();
+
+        try {
+            assert new EventTask(taskData).equals(this);
+        } catch (InvalidInputException e) {
+            throw new AssertionError(e);
+            //An invalid input exception will only occur if the assert statement is false
+        }
+
+        return taskData;
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString() +" (from: " + this.from + " to: "+ this.to +")";
+    }
+
+    @Override
+    public boolean equals(Object inputObj) {
+        if (!(inputObj instanceof Task inputTask)){
+            return false;
+        }
+        if (!(inputTask.equals(this))) {
+            return false;
+        }
+
+        if (!(inputTask instanceof EventTask inputEventTask)){
+            return false;
+        }
+
+        return inputEventTask.from.equals(this.from) && inputEventTask.to.equals(this.to);
+
     }
 }

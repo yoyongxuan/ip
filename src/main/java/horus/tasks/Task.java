@@ -39,6 +39,7 @@ public class Task {
         String taskType = taskDataArray[0];
         String markedStr = taskDataArray[1];
         String taskStr = taskDataArray[2];
+
         switch (taskType) {
         case "T":
             out = new ToDoTask(taskStr);
@@ -88,5 +89,14 @@ public class Task {
     public String toString() {
         String markStr = isMarked? "X" : " ";
         return "[" + markStr +"] " + this.taskDesc;
+    }
+
+    @Override
+    public boolean equals(Object inputObj) {
+        if (!(inputObj instanceof Task inputTask)){
+            return false;
+        }
+
+        return inputTask.isMarked == this.isMarked && inputTask.taskDesc.equals(this.taskDesc);
     }
 }

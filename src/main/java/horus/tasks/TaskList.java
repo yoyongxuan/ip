@@ -72,6 +72,8 @@ public class TaskList {
         if (taskStr == "") {
             throw new InvalidInputException("Error: Description of task cannot be empty.");
         }
+        int originalTaskListSize = tasks.size();
+
         switch(taskType) {
         case TODO:
             tasks.add(new ToDoTask(taskStr));
@@ -90,7 +92,11 @@ public class TaskList {
             tasks.add(new EventTask(taskStr));
             break;
         }
-        return "Got it. I've added this task:\n  " + tasks.get(tasks.size()-1) + "\nNow you have " + tasks.size() + " tasks in the list.\n";
+
+        int newTaskListSize = tasks.size();
+        assert newTaskListSize == originalTaskListSize - 1;
+
+        return "Got it. I've added this task:\n  " + tasks.get(tasks.size()-1) + "\nNow you have " + newTaskListSize + " tasks in the list.\n";
     }
 
     //Prints the contents of the taskList
@@ -150,14 +156,18 @@ public class TaskList {
      */
     public String delete(String taskId) throws InvalidInputException {
         int task_index = Integer.parseInt(taskId) - 1;
-        if(task_index >= tasks.size()) {
+        int originalTaskListSize = tasks.size();
+        if(task_index >= originalTaskListSize) {
             throw new InvalidInputException(
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
-
-        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index);
+        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index).toString();
         tasks.remove(task_index);
-        out += "\nNow you have " + tasks.size() + " tasks in the list.\n";
+
+        int newTaskListSize = tasks.size();
+        assert newTaskListSize == originalTaskListSize - 1;
+
+        out += "\nNow you have " + newTaskListSize + " tasks in the list.\n";
         return out;
     }
 
