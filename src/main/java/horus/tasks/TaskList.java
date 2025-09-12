@@ -82,14 +82,25 @@ public class TaskList {
             if(!taskStr.contains("/by")){
                 throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
             }
-            tasks.add(new DeadlineTask(taskStr));
+
+            if (taskStr.contains("/every")){
+                tasks.add(new RecurringDeadlineTask(taskStr));
+            } else {
+                tasks.add(new DeadlineTask(taskStr));
+            }
+
             break;
         case EVENT:
             if(!taskStr.contains("/from") || !taskStr.contains("/to")){
                 throw new InvalidInputException(
                         "Error: Event tasks must have a start and end (denoted with /from and /to).");
             }
-            tasks.add(new EventTask(taskStr));
+            if (taskStr.contains("/every")){
+                tasks.add(new RecurringEventTask(taskStr));
+            } else {
+                tasks.add(new EventTask(taskStr));
+            }
+
             break;
         }
 

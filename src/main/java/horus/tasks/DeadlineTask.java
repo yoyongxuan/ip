@@ -44,6 +44,5 @@ public class DeadlineTask extends Task {
         }
 
         return inputDeadlineTask.by.equals(this.by);
-
     }
 }

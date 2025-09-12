@@ -55,6 +55,33 @@ public class CustomDateTime {
     }
 
     /**
+     * Checks if CustomDateTime contains a valid dateTime
+     **
+     * @return true if CustomDateTime contains a valid dateTime and false otherwise
+     */
+    public boolean checkDateTime() {
+        return !(dateTime == null);
+    }
+
+    /**
+     * Postpone the date represented by CustomDateTime
+     **
+     * @param days Number of days to postpone the date by
+     */
+    public void plusDays(int days) {
+        dateTime = dateTime.plusDays(days);
+    }
+
+    /**
+     * Advance the date represented by CustomDateTime
+     **
+     * @param days Number of days to advance the date by
+     */
+    public void minusDays(int days) {
+        dateTime = dateTime.minusDays(days);
+    }
+
+    /**
      * Returns a string similar to the input dateTimeStr
      *         with dates and times converted to "MMM d yyyy" and "H:mma" formats
      */
