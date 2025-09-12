@@ -2,20 +2,22 @@ package horus.tasks;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CustomDateTimeTest {
 
     @Test
     public void testDateOnlyInput() {
         CustomDateTime testObj = new CustomDateTime("19/12/2023");
-        assertEquals("Dec 19 2023 ", testObj.toString() );
+        assertEquals("Dec 19 2023 11:59pm ", testObj.toString() );
         testGetData(testObj);
     }
 
     @Test
     public void testTimeOnlyInput() {
         CustomDateTime testObj = new CustomDateTime("1600");
-        assertEquals("4:00pm ", testObj.toString() );
+        assertEquals( LocalDate.now().format( DateTimeFormatter.ofPattern("MMM d yyyy")) + " 4:00pm ", testObj.toString() );
         testGetData(testObj);
     }
 
