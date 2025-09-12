@@ -11,10 +11,8 @@ public class DeadlineTask extends Task {
      **
      * @param taskStr String representing the description of task to be created
      *                and a deadline denoted by /by.
-     * @throws InvalidInputException If dateTimeStr contains a substring
-     *         with the correct date or time formatting (dd/MM/yyyy and HHmm) but is not a valid date or time
      */
-    public DeadlineTask(String taskStr) throws InvalidInputException{
+    public DeadlineTask(String taskStr) {
         super(taskStr.substring(0,taskStr.indexOf("/by")) );
         by = new CustomDateTime(taskStr.substring(taskStr.indexOf("/by") + 3));
     }
@@ -22,13 +20,7 @@ public class DeadlineTask extends Task {
     @Override
     public String getTaskData() {
         String taskData = "D," + super.getTaskData() + "/by " + this.by.getData();
-
-        try {
-            assert new DeadlineTask(taskData).equals(this);
-        } catch (InvalidInputException e) {
-            throw new AssertionError(e);
-            //An invalid input exception will only occur if the assert statement is false
-        }
+        assert new DeadlineTask(taskData).equals(this);
 
         return taskData;
     }

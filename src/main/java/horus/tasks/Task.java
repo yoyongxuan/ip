@@ -32,6 +32,8 @@ public class Task {
      *
      * @param taskData A string containing task data, similar to one from Task.getTaskData()
      * @return A Task object whose getTaskData() method will return a string similar to taskData
+     * @throws InvalidInputException If deadline tasks is missing a deadline
+     *         or if event task is missing a start and end
      */
     public static Task readTaskData(String taskData) throws InvalidInputException {
         Task out;
@@ -46,14 +48,14 @@ public class Task {
             break;
         case "D":
             if(!taskStr.contains("/by")){
-                throw new InvalidInputException("Error: Deadline horus.tasks must have a deadline (denoted with /by).");
+                throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
             }
             out = new DeadlineTask(taskStr);
             break;
         case "E":
             if(!taskStr.contains("/from") || !taskStr.contains("/to")){
                 throw new InvalidInputException(
-                        "Error: Event horus.tasks must have a start and end (denoted with /from and /to).");
+                        "Error: Event tasks must have a start and end (denoted with /from and /to).");
             }
             out = new EventTask(taskStr);
             break;
