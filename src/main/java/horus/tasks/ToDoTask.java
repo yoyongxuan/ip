@@ -16,11 +16,26 @@ public class ToDoTask extends Task {
 
     @Override
     public String getTaskData() {
-        return "T," + super.getTaskData();
+        String taskData = "T," + super.getTaskData();
+        assert new ToDoTask(taskData).equals(this);
+
+        return taskData;
     }
 
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object inputObj) {
+        if (!(inputObj instanceof Task inputTask)){
+            return false;
+        }
+        if (!(inputTask.equals(this))) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -58,6 +58,18 @@ public class CustomDateTime {
         return dateStr + timeStr + remainingStr;
     }
 
+    @Override
+    public boolean equals(Object inputObj){
+        if (!(inputObj instanceof CustomDateTime dateTimeInput)){
+            return false;
+        }
+        boolean isSameDate = this.date.equals(dateTimeInput.date);
+        boolean isSameTime = this.time.equals(dateTimeInput.time);
+        boolean isSameRemainingStr = this.remainingStr.equals(dateTimeInput.remainingStr);
+
+        return isSameDate && isSameTime && isSameRemainingStr;
+    }
+
     /**
      * Returns a string similar to the input dateTimeStr
      *
@@ -66,7 +78,10 @@ public class CustomDateTime {
     public String getData() {
         String dateStr = date == null ? "" : date.format( DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ";
         String timeStr = time == null ? "" : time.format( DateTimeFormatter.ofPattern("HHmm"))  + " ";
-        return dateStr + timeStr + remainingStr;
+        String outputDateTimeStr = dateStr + timeStr + remainingStr;
+
+        assert new CustomDateTime(outputDateTimeStr).equals(this);
+        return outputDateTimeStr;
     }
 
 }

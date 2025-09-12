@@ -21,11 +21,37 @@ public class DeadlineTask extends Task {
 
     @Override
     public String getTaskData() {
-        return "D," + super.getTaskData() + "/by " + this.by.getData() ;
+        String taskData = "D," + super.getTaskData() + "/by " + this.by.getData();
+
+        try {
+            assert new DeadlineTask(taskData).equals(this);
+        } catch (InvalidInputException e) {
+            throw new AssertionError(e);
+            //An invalid input exception will only occur if the assert statement is false
+        }
+
+        return taskData;
     }
 
     @Override
     public String toString() {
         return "[D]" + super.toString() +" (by: " + this.by +")";
+    }
+
+    @Override
+    public boolean equals(Object inputObj) {
+        if (!(inputObj instanceof Task inputTask)){
+            return false;
+        }
+        if (!(inputTask.equals(this))) {
+            return false;
+        }
+
+        if (!(inputTask instanceof DeadlineTask inputDeadlineTask)){
+            return false;
+        }
+
+        return inputDeadlineTask.by.equals(this.by);
+
     }
 }
