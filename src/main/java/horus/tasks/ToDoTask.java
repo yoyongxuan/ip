@@ -17,7 +17,13 @@ public class ToDoTask extends Task {
     @Override
     public String getTaskData() {
         String taskData = "T," + super.getTaskData();
-        assert new ToDoTask(taskData).equals(this);
+        Task newTask;
+        try {
+            newTask = Task.readTaskData(taskData);
+        } catch (InvalidInputException e) {
+            throw new AssertionError();
+        }
+        assert newTask.equals(this);
 
         return taskData;
     }
@@ -29,10 +35,11 @@ public class ToDoTask extends Task {
 
     @Override
     public boolean equals(Object inputObj) {
-        if (!(inputObj instanceof Task inputTask)){
+        if (!(super.equals(inputObj))) {
             return false;
         }
-        if (!(inputTask.equals(this))) {
+
+        if (inputObj.getClass() != getClass()){
             return false;
         }
 

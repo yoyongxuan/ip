@@ -13,7 +13,7 @@ public class Task {
      * @param taskStr String representing the description of task to be created
      */
     public Task(String taskStr) {
-        this.taskDesc = taskStr;
+        this.taskDesc = taskStr.strip();
         this.isMarked = false;
     }
 
@@ -95,9 +95,13 @@ public class Task {
 
     @Override
     public boolean equals(Object inputObj) {
-        if (!(inputObj instanceof Task inputTask)){
+        if (inputObj == null) {
             return false;
         }
+        if (inputObj.getClass() != getClass()){
+            return false;
+        }
+        Task inputTask = (Task) inputObj;
 
         return inputTask.isMarked == this.isMarked && inputTask.taskDesc.equals(this.taskDesc);
     }

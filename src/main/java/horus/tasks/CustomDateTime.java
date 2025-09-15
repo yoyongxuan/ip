@@ -100,8 +100,9 @@ public class CustomDateTime {
         if (!(inputObj instanceof CustomDateTime dateTimeInput)){
             return false;
         }
-        boolean isSameDateTime = this.dateTime.equals(dateTimeInput.dateTime);
-        boolean isSameRemainingStr = this.remainingStr.equals(dateTimeInput.remainingStr);
+
+        boolean isSameDateTime = (this.dateTime == dateTimeInput.dateTime) || this.dateTime.equals(dateTimeInput.dateTime);
+        boolean isSameRemainingStr = (this.remainingStr == dateTimeInput.remainingStr) || this.remainingStr.equals(dateTimeInput.remainingStr);
 
         return isSameDateTime && isSameRemainingStr;
     }

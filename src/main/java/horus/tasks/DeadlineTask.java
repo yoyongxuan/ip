@@ -20,29 +20,33 @@ public class DeadlineTask extends Task {
     @Override
     public String getTaskData() {
         String taskData = "D," + super.getTaskData() + "/by " + this.by.getData();
-        assert new DeadlineTask(taskData).equals(this);
+        Task newTask;
+        try {
+            newTask = Task.readTaskData(taskData);
+        } catch (InvalidInputException e) {
+            throw new AssertionError();
+        }
+        assert newTask.equals(this);
 
         return taskData;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() +" (by: " + this.by +")";
+        return "[D]" + super.toString() + " (by: " + this.by +")";
     }
 
     @Override
     public boolean equals(Object inputObj) {
-        if (!(inputObj instanceof Task inputTask)){
-            return false;
-        }
-        if (!(inputTask.equals(this))) {
+        if (!(super.equals(inputObj))) {
             return false;
         }
 
-        if (!(inputTask instanceof DeadlineTask inputDeadlineTask)){
+        if (inputObj.getClass() != getClass()){
             return false;
         }
 
+        DeadlineTask inputDeadlineTask = (DeadlineTask) inputObj;
         return inputDeadlineTask.by.equals(this.by);
     }
 }
