@@ -35,7 +35,7 @@ public class Parser {
         try {
             switch (command) {
             case "bye":
-                return "Bye. Hope to see you again soon!\n";
+                return "Until we next meet. The Emperor protects!\n";
             case "save":
                 return "\n";
             case "list":
@@ -55,24 +55,26 @@ public class Parser {
             case "find":
                 return taskList.find(inputArray[1]);
             default:
-                return "Error: '" + inputStr + "' is not a valid command.\n";
+                return "Error: '" + inputStr + "' is not a sanctioned command.\n";
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             switch (command) {
                 case "mark":
                 case "unmark":
                 case "delete":
-                    return "Error: Must select task number to " + command + ".\n";
+                    return "Error: You must designate the sacred number of the task to " + command + ".\n";
                 case "todo":
                 case "deadline":
                 case "event":
-                    return "Error: Description of task cannot be empty.\n";
+                    return "Error: A warrior’s oath cannot be sworn upon silence. The task description must be spoken.\n";
                 default:
                     throw new RuntimeException(e); //Unknown source of exception
             }
         } catch (NumberFormatException e) {
-            return "Error: " + inputArray[1] + " is not an integer. Please input task number to "
-                            + command +"\n";
+//            return "Error: " + inputArray[1] + " is not an integer. Please input task number to "
+//                            + command +"\n";
+            return "Error: " + inputArray[1] + " is no true number. Present a valid task number to "
+                    + command + ", lest duty falter.\n";
         } catch (InvalidInputException e) {
             return e.getMessage() +"\n";
         }

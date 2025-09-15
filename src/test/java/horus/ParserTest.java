@@ -11,7 +11,7 @@ public class ParserTest {
     @Test
     public void testByeCommand() {
         Parser parser = new Parser(new TaskList());
-        assertEquals("Bye. Hope to see you again soon!\n", parser.parse("bye "));
+        assertEquals("Until we next meet. The Emperor protects!\n", parser.parse("bye "));
     }
 
     @Test
@@ -104,13 +104,14 @@ public class ParserTest {
         Parser parser = new Parser(new TaskList());
         String[] commandsToTest = new String[]{"mark", "unmark", "delete"};
         for (int i = 0; i < commandsToTest.length; i++) {
-            assertEquals("Error: Must select task number to " + commandsToTest[i] + ".\n",
+            assertEquals(
+                    "Error: You must designate the sacred number of the task to " + commandsToTest[i] + ".\n",
                     parser.parse(commandsToTest[i]) );
         }
 
         commandsToTest = new String[]{"todo", "deadline", "event"};
         for (int i = 0; i < commandsToTest.length; i++) {
-            assertEquals("Error: Description of task cannot be empty.\n",
+            assertEquals("Error: A warrior’s oath cannot be sworn upon silence. The task description must be spoken.\n",
                     parser.parse(commandsToTest[i]) );
         }
     }
@@ -120,8 +121,8 @@ public class ParserTest {
         Parser parser = new Parser(new TaskList());
         String[] commandsToTest = new String[]{"mark", "unmark", "delete"};
         for (int i = 0; i < commandsToTest.length; i++) {
-            assertEquals("Error: abc is not an integer. Please input task number to "
-                            + commandsToTest[i] +"\n",
+            assertEquals("Error: abc is no true number. Present a valid task number to "
+                            + commandsToTest[i] + ", lest duty falter.\n",
                     parser.parse(commandsToTest[i] + " abc") );
         }
     }
