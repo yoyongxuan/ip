@@ -55,7 +55,6 @@ public class Parser {
             case "find":
                 return taskList.find(inputArray[1]);
             default:
-//                return "Error: '" + inputStr + "' is not a valid command.\n";
                 return "Error: '" + inputStr + "' is not a sanctioned command.\n";
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -63,13 +62,11 @@ public class Parser {
                 case "mark":
                 case "unmark":
                 case "delete":
-//                    return "Error: Must select task number to " + command + ".\n";
                     return "Error: You must designate the sacred number of the task to " + command + ".\n";
                 case "todo":
                 case "deadline":
                 case "event":
-//                    return "Error: Description of task cannot be empty.\n";
-                    return "A warrior’s oath cannot be sworn upon silence. The task description must be spoken.\n";
+                    return "Error: A warrior’s oath cannot be sworn upon silence. The task description must be spoken.\n";
                 default:
                     throw new RuntimeException(e); //Unknown source of exception
             }
