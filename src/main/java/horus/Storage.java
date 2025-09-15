@@ -56,10 +56,12 @@ public class Storage {
             }
             taskWriter.close();
         } catch (IOException e) {
-            return "Error: Unable to access local file, tasks not saved.";
+//            return "Error: Unable to access local file, tasks not saved.";
+            return "Error: The archive denies us, your sacred duties lie unsaved in the void.";
         }
 
-        return "Task list saved.";
+//        return "Task list saved.";
+        return "By the Emperor’s will, the task litany is secured within the Chapter’s vaults.";
     }
 
     /**

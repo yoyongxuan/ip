@@ -55,10 +55,13 @@ public class TaskList {
                 tasks.add(Task.readTaskData(fileData[i]));
                 addedTasks++;
             } catch (InvalidInputException e) {
-                out += "Local file corrupted. " + fileData[i] + " is not a valid task\n";
+//                out += "Local file corrupted. " + fileData[i] + " is not a valid task\n";
+                out += "Corruption detected. The data shard " + fileData[i] + " bears heresy unfit for duty.\n";
             }
         }
-        out += addedTasks + " tasks retrieved.";
+//        out += addedTasks + " tasks retrieved.";
+        out +=  "By the Emperor’s grace, " + addedTasks + " sworn duties have been recovered.\n";
+
         return out;
     }
 
@@ -72,7 +75,9 @@ public class TaskList {
      */
     public String addTask(String taskStr, taskTypes taskType) throws InvalidInputException {
         if (taskStr == "") {
-            throw new InvalidInputException("Error: Description of task cannot be empty.");
+//            throw new InvalidInputException("Error: Description of task cannot be empty.");
+            throw new InvalidInputException("Error: A warrior’s oath cannot be sworn upon silence. " +
+                    "The task description must be spoken.");
         }
         switch(taskType) {
         case TODO:
@@ -80,7 +85,9 @@ public class TaskList {
             break;
         case DEADLINE:
             if(!taskStr.contains("/by")){
-                throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
+//                throw new InvalidInputException("Error: Deadline tasks must have a deadline (denoted with /by).");
+                throw new InvalidInputException(
+                        "Error: A mission of deadline requires its appointed hour, denoted by /by.");
             }
 
             if (taskStr.contains("/every")){
@@ -92,8 +99,10 @@ public class TaskList {
             break;
         case EVENT:
             if(!taskStr.contains("/from") || !taskStr.contains("/to")){
+//                throw new InvalidInputException(
+//                        "Error: Event tasks must have a start and end (denoted with /from and /to).");
                 throw new InvalidInputException(
-                        "Error: Event tasks must have a start and end (denoted with /from and /to).");
+                        "Error: An event must be bound by inception and cessation, /from and /to mark its span.");
             }
             if (taskStr.contains("/every")){
                 tasks.add(new RecurringEventTask(taskStr));
@@ -105,7 +114,12 @@ public class TaskList {
         }
 
         Task addedTask = tasks.get(tasks.size()-1);
-        return "Got it. I've added this task:\n  " + addedTask.toString() + "\nNow you have " + tasks.size() + " tasks in the list.\n";
+//        return "Got it. I've added this task:\n  " + addedTask.toString() + "\n" +
+//                "Now you have " + tasks.size() + " tasks in the list.\n";
+
+        return "It is done. A new duty is inscribed upon your litany:\n " + addedTask.toString() +
+                "\nYour sacred roster now bears " + tasks.size() + " charges.";
+
     }
 
     //Prints the contents of the taskList
@@ -134,11 +148,14 @@ public class TaskList {
     public String markTask(String taskId) throws InvalidInputException {
         int taskIndex = Integer.parseInt(taskId) - 1;
         if(taskIndex >= tasks.size()) {
+//            throw new InvalidInputException(
+//                    "Error: No task at index " + taskId + ". Please input a valid task number." );
             throw new InvalidInputException(
-                    "Error: No task at index " + taskId + ". Please input a valid task number." );
+                    "Error: No such duty exists at index " + taskId + ". Speak a valid number, or be silent." );
         }
         tasks.get(taskIndex).mark();
-        return "Nice! I've marked this task as done:\n  " + tasks.get(taskIndex) + "\n";
+//        return "Nice! I've marked this task as done:\n  " + tasks.get(taskIndex) + "\n";
+        return "The oath is fulfilled:\n " + tasks.get(taskIndex) + "\nLet it be recorded in the annals of duty.";
     }
 
     /**
@@ -155,7 +172,9 @@ public class TaskList {
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
         tasks.get(task_index).unmark();
-        return "OK, I've marked this task as not done yet:\n  " + tasks.get(task_index) + "\n";
+//        return "OK, I've marked this task as not done yet:\n  " + tasks.get(task_index) + "\n";
+        return "The charge remains incomplete:\n " + tasks.get(task_index)
+                + "\nBear it forward until victory is achieved.";
     }
 
     /**
@@ -172,9 +191,11 @@ public class TaskList {
                     "Error: No task at index " + taskId + ". Please input a valid task number." );
         }
 
-        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index);
+//        String out = "Noted. I've removed this task:\n  " + tasks.get(task_index);
+        String out = "The burden is lifted. This duty is struck from your record:\n " + tasks.get(task_index);
         tasks.remove(task_index);
-        out += "\nNow you have " + tasks.size() + " tasks in the list.\n";
+//        out += "\nNow you have " + tasks.size() + " tasks in the list.\n";
+        out += "\nYour ledger now holds " + tasks.size() + " sacred charges.";
         return out;
     }
 
@@ -196,9 +217,11 @@ public class TaskList {
         }
 
         if (matchingTasksCount == 0) {
-            return "There are no matching tasks in your list.";
+//            return "There are no matching tasks in your list.";
+            return "Your search yields only silence. No duties align with your query.";
         } else {
-            return "Here are the matching tasks in your list:\n" + out;
+//            return "Here are the matching tasks in your list:\n" + out;
+            return "By vigilance, the following tasks answer your summons:\n" + out;
         }
 
 

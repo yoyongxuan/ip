@@ -29,15 +29,20 @@ public class Horus {
         try {
             saveFile = new Storage(filePath);
             if (!saveFile.checkIsNew()) {
-                greetingMessage += "Retrieving saved tasks from local file.\n";
+//                greetingMessage += "Retrieving saved tasks from local file.\n";
+                greetingMessage += "Summoning the record of oaths from the Chapter’s vaults.\n";
                 greetingMessage += taskList.readFromFile(saveFile.readFile());
             }
         } catch (IOException e) {
-            greetingMessage += "Error: Unable to access local files";
+//            greetingMessage += "Error: Unable to access local files";
+            greetingMessage += "Error: The archives are sealed. Local data cannot be reclaimed.";
             throw new RuntimeException();
         }
 
-        greetingMessage += "\nHello! I'm Horus\nWhat can I do for you?";
+//        greetingMessage += "\nHello! I'm Horus\nWhat can I do for you?";
+        greetingMessage += "\nStand firm, warrior. I am Horus Lupercal,"
+                + " primarch of the Lunar Wolves, Warmaster of the Imperium of Man and keeper of your sacred charges."
+                + "\nSpeak now, what duty shall I inscribe for you?";
     }
 
     /**
