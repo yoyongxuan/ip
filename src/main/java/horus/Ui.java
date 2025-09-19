@@ -3,7 +3,7 @@ package horus;
 import java.util.Scanner;
 
 /**
- * Class that handles inputs and outputs of the user
+ * Class that handles inputs and outputs of the user.
  */
 public class Ui {
     Scanner scanner;
@@ -13,19 +13,19 @@ public class Ui {
     }
 
     /**
-     * Gets user input
+     * Gets user input.
      *
-     * @return String representing user input
+     * @return String representing user input.
      */
     public String getInputStr(){
         return scanner.nextLine();
     }
 
     /**
-     * Prints the contents of outputArray surrounded by lines
+     * Prints the contents of outputArray surrounded by lines.
      *
      * @param outputArray An array containing strings to be printed,
-     *                    with each string representing a line to be printed on the output terminal
+     *                    with each string representing a line to be printed on the output terminal.
      */
     public void printOutputArray(String[] outputArray) {
         printLine();
@@ -36,9 +36,9 @@ public class Ui {
     }
 
     /**
-     * Prints the contents of outputString surrounded by lines
+     * Prints the contents of outputString surrounded by lines.
      *
-     * @param outputString String to be printed to output terminal
+     * @param outputString String to be printed to output terminal.
      */
     public void printOutputString(String outputString) {
         printLine();
@@ -48,16 +48,16 @@ public class Ui {
 
 
     /**
-     * Prints the contents of out
+     * Prints the contents of out.
      *
-     * @param out String to be printed
+     * @param out String to be printed.
      */
     public void print(String out) {
         System.out.println(out);
     }
 
     /**
-     * Prints a line
+     * Prints a line.
      */
     private static void printLine() {
         System.out.println("____________________________________________________________" );

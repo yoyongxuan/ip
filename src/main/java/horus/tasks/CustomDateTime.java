@@ -7,16 +7,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * An object representing a time which may or may not contain a date and a time of day
+ * An object representing a time which may or may not contain a date and a time of day.
  */
 public class CustomDateTime {
     LocalDateTime dateTime;
     String remainingStr;
 
     /**
-     * Creates a CustomDateTime object based on dateTimeStr
-     **
-     * @param dateTimeStr String which may or may not start with a date and time
+     * Creates a CustomDateTime object based on dateTimeStr.
+     *
+     * @param dateTimeStr String which may or may not start with a date and time.
      */
     public CustomDateTime(String dateTimeStr) {
         LocalDate date = null;
@@ -55,27 +55,27 @@ public class CustomDateTime {
     }
 
     /**
-     * Checks if CustomDateTime contains a valid dateTime
-     **
-     * @return true if CustomDateTime contains a valid dateTime and false otherwise
+     * Checks if CustomDateTime contains a valid dateTime.
+     *
+     * @return true if CustomDateTime contains a valid dateTime and false otherwise.
      */
     public boolean checkDateTime() {
         return !(dateTime == null);
     }
 
     /**
-     * Postpone the date represented by CustomDateTime
-     **
-     * @param days Number of days to postpone the date by
+     * Postpone the date represented by CustomDateTime.
+     *
+     * @param days Number of days to postpone the date by.
      */
     public void plusDays(int days) {
         dateTime = dateTime.plusDays(days);
     }
 
     /**
-     * Advance the date represented by CustomDateTime
-     **
-     * @param days Number of days to advance the date by
+     * Advance the date represented by CustomDateTime.
+     *
+     * @param days Number of days to advance the date by.
      */
     public void minusDays(int days) {
         dateTime = dateTime.minusDays(days);
@@ -83,7 +83,7 @@ public class CustomDateTime {
 
     /**
      * Returns a string similar to the input dateTimeStr
-     *         with dates and times converted to "MMM d yyyy" and "H:mma" formats
+     *         with dates and times converted to "MMM d yyyy" and "H:mma" formats.
      */
     @Override
     public String toString() {

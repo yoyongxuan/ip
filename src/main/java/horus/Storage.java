@@ -65,10 +65,10 @@ public class Storage {
     }
 
     /**
-     * Reads and returns the contents of this.file
+     * Reads and returns the contents of this.file.
      *
-     * @return An array of strings with each string representing a line in the file
-     * @throws IOException if file cannot be accessed
+     * @return An array of strings with each string representing a line in the file.
+     * @throws IOException if file cannot be accessed.
      */
     public String[] readFile() throws IOException {
         Scanner scanner = new Scanner(file);

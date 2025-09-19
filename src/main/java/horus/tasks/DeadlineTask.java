@@ -1,14 +1,14 @@
 package horus.tasks;
 
 /**
- * An object representing a task with a deadline
+ * An object representing a task with a deadline.
  */
 public class DeadlineTask extends Task {
     CustomDateTime by;
 
     /**
-     * Creates a deadline task
-     **
+     * Creates a deadline task.
+     *
      * @param taskStr String representing the description of task to be created
      *                and a deadline denoted by /by.
      */

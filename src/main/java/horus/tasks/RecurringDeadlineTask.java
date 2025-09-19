@@ -1,14 +1,14 @@
 package horus.tasks;
 
 /**
- * An object representing a reccuring task with a deadline
+ * An object representing a reccuring task with a deadline.
  */
 public class RecurringDeadlineTask extends DeadlineTask {
     int every;
 
     /**
-     * Creates a recurring deadline task
-     **
+     * Creates a recurring deadline task.
+     *
      * @param taskStr String representing the description of deadline task to be created
      *               and the number of days this task will recur denoted by /every.
      * @throws InvalidInputException If deadline is not a valid dateTime or /every is not an integer

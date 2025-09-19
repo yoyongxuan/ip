@@ -1,16 +1,16 @@
 package horus.tasks;
 
 /**
- * An object representing a task
+ * An object representing a task.
  */
 public class Task {
     String taskDesc;
     boolean isMarked;
 
     /**
-     * Creates a task
-     **
-     * @param taskStr String representing the description of task to be created
+     * Creates a task.
+     *
+     * @param taskStr String representing the description of task to be created.
      */
     public Task(String taskStr) {
         this.taskDesc = taskStr.strip();
@@ -18,9 +18,9 @@ public class Task {
     }
 
     /**
-     * Returns string to be saved to file
+     * Returns string to be saved to file.
      *
-     * @return A string from which a similar Task object may be initialized from
+     * @return A string from which a similar Task object may be initialized from.
      */
     public String getTaskData() {
         String markStr = this.isMarked? "T" : "F";
@@ -28,12 +28,12 @@ public class Task {
     }
 
     /**
-     * Creates a Task from data previously saved to a file with Task.getTaskData()
+     * Creates a Task from data previously saved to a file with Task.getTaskData().
      *
-     * @param taskData A string containing task data, similar to one from Task.getTaskData()
-     * @return A Task object whose getTaskData() method will return a string similar to taskData
+     * @param taskData A string containing task data, similar to one from Task.getTaskData().
+     * @return A Task object whose getTaskData() method will return a string similar to taskData.
      * @throws InvalidInputException If deadline tasks is missing a deadline
-     *         or if event task is missing a start and end
+     *         or if event task is missing a start and end.
      */
     public static Task readTaskData(String taskData) throws InvalidInputException {
         Task out;
@@ -73,14 +73,14 @@ public class Task {
 
 
     /**
-     * Marks task as done
+     * Marks task as done.
      */
     public void mark() {
         isMarked = true;
     }
 
     /**
-     * Unmarks task as done
+     * Unmarks task as done.
      */
     public void unmark() {
         isMarked = false;

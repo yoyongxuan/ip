@@ -3,13 +3,13 @@ package horus.tasks;
 import java.util.ArrayList;
 
 /**
- * A list of tasks
+ * A list of tasks.
  */
 public class TaskList {
     ArrayList<Task> tasks;
 
     /**
-     * Represents the 3 different task classes
+     * Represents the 3 different task classes.
      */
     public enum taskTypes {
         TODO,
@@ -18,16 +18,16 @@ public class TaskList {
     }
 
     /**
-     * Creates a list of tasks
+     * Creates a list of tasks.
      */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Saves the content of the task list to an array to be saved to a file
+     * Saves the content of the task list to an array to be saved to a file.
      *
-     * @return Array of strings with containing task data to be saved to a file
+     * @return Array of strings with containing task data to be saved to a file.
      */
     public String[] saveToFile() {
         String[] fileContents = new String[tasks.size()];
@@ -41,10 +41,10 @@ public class TaskList {
     }
 
     /**
-     *Adds the tasks in fileData to tasklist
+     * Adds the tasks represented in fileData to the task list
      *
-     * @param fileData Array of strings representing contents of a save file
-     * @return String to be printed by Ui
+     * @param fileData Array of strings representing contents of a save file.
+     * @return String to be printed by Ui.
      */
     public String readFromFile(String[] fileData)  {
         String out = "";
@@ -66,12 +66,12 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the TaskList and prints a corresponding message if successful
+     * Adds a task to the TaskList and prints a corresponding message if successful.
      *
-     * @param taskStr String containing task description and other details such as /to /from and /by
-     * @param taskType enum representing type of task to be added
-     * @return String to be printed by Ui
-     * @throws InvalidInputException If taskStr is invalid
+     * @param taskStr String containing task description and other details such as /to /from and /by.
+     * @param taskType enum representing type of task to be added.
+     * @return String to be printed by Ui.
+     * @throws InvalidInputException If taskStr is invalid.
      */
     public String addTask(String taskStr, taskTypes taskType) throws InvalidInputException {
         if (taskStr == "") {
@@ -124,9 +124,9 @@ public class TaskList {
 
     //Prints the contents of the taskList
     /**
-     * Returns a string represnting the contents of taskList to be printed
+     * Returns a string representing the contents of taskList to be printed.
      *
-     * @return A string with each line representing a task in tasklist
+     * @return A string with each line representing a task in tasklist.
      */
     public String showList() {
         String out = "";
@@ -139,11 +139,11 @@ public class TaskList {
     }
 
     /**
-     * Marks selected task as done
+     * Marks selected task as done.
      *
-     * @param taskId String representing the index of task to be marked
-     * @return String to be printed by Ui
-     * @throws InvalidInputException If taskId is not a valid task index
+     * @param taskId String representing the index of task to be marked.
+     * @return String to be printed by Ui.
+     * @throws InvalidInputException If taskId is not a valid task index.
      */
     public String markTask(String taskId) throws InvalidInputException {
         int taskIndex = Integer.parseInt(taskId) - 1;

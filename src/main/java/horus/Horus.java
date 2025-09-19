@@ -16,10 +16,10 @@ public class Horus {
     private String greetingMessage;
 
     /**
-     * Initializes Horus and retrieves any previously saved tasks from a save file
+     * Initializes Horus and retrieves any previously saved tasks from a save file.
      *
      * @param filePath A string representing the file path where any tasks added will be saved.
-     *                 If the file already exists, Horus will initialize with any tasks saved on the file
+     *                 If the file already exists, Horus will initialize with any tasks saved on the file.
      */
     public Horus(String filePath) {
         taskList = new TaskList();
@@ -46,14 +46,14 @@ public class Horus {
     }
 
     /**
-     * Initializes Horus using the default filepath
+     * Initializes Horus using the default filepath.
      */
     public Horus() {
         this(Horus.DEFAULT_FILEPATH);
     }
 
     /**
-     * Runs the Horus program, where the program will continuously execute input commands until program exits
+     * Runs the Horus program, where the program will continuously execute input commands until program exits.
      */
     public void run() {
         boolean isExit = false;
@@ -68,9 +68,9 @@ public class Horus {
     }
 
     /**
-     * Get a greeting message to print when starting Horus
+     * Returns a greeting message to print when starting Horus.
      *
-     * @return String representing greeting message
+     * @return String representing greeting message.
      */
     public String getGreetingMessage() {
         return this.greetingMessage;

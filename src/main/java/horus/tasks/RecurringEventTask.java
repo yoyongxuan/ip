@@ -1,17 +1,17 @@
 package horus.tasks;
 
 /**
- * An object representing a reccuring event task
+ * An object representing a reoccurring event task.
  */
 public class RecurringEventTask extends EventTask {
     int every;
 
     /**
-     * Creates a recurring event task
-     **
+     * Creates a recurring event task.
+     *
      * @param taskStr String representing the description of event task to be created
      *               and the number of days this task will recur denoted by /every.
-     * @throws InvalidInputException If start and end are not a valid dateTime or /every is not an integer
+     * @throws InvalidInputException If start and end are not a valid dateTime or /every is not an integer.
      */
     public RecurringEventTask(String taskStr) throws InvalidInputException {
         super(taskStr.substring(0,taskStr.indexOf("/every")) );

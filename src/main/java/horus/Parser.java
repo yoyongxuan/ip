@@ -5,22 +5,22 @@ import horus.tasks.InvalidInputException;
 
 
 /**
- * A class that is able to parse input strings and execute relevant commands on this.taskList
+ * A class that is able to parse input strings and execute relevant commands on this.taskList.
  */
 public class Parser {
     TaskList taskList;
 
     /**
-     * Initializes parser with taskList
+     * Initializes parser with taskList.
      *
-     * @param taskList The TaskList on which future commands are executed
+     * @param taskList The TaskList on which future commands are executed.
      */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
 
     /**
-     * Parses inputStr for commands and executes relevant commands on this.taskList
+     * Parses inputStr for commands and executes relevant commands on this.taskList.
      *
      * @param inputStr String representing user input
      * @return String to be printed by Ui

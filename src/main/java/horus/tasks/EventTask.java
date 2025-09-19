@@ -1,18 +1,18 @@
 package horus.tasks;
 
 /**
- * An object representing an event task
+ * An object representing an event task.
  */
 public class EventTask extends Task {
     CustomDateTime from;
     CustomDateTime to;
 
     /**
-     * Creates an event task
-     **
+     * Creates an event task.
+     *
      * @param taskStr String representing the description of task to be created,
      *                the start of the event denoted by /from
-     *                and the end of the event denoted by /to
+     *                and the end of the event denoted by /to.
      */
     public EventTask(String taskStr) {
         super(taskStr.substring(0,taskStr.indexOf("/from")) );
